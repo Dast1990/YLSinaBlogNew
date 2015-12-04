@@ -1,0 +1,673 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C25DD0CA1C11AE1200D4CFCB /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0911C11AE1200D4CFCB /* UIBarButtonItem+Extension.m */; };
+		C25DD0CB1C11AE1200D4CFCB /* UIView+YLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0931C11AE1200D4CFCB /* UIView+YLExtension.m */; };
+		C25DD0CC1C11AE1200D4CFCB /* YLDiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0971C11AE1200D4CFCB /* YLDiscoverTableViewController.m */; };
+		C25DD0CD1C11AE1200D4CFCB /* YLHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD09D1C11AE1200D4CFCB /* YLHomeTableViewController.m */; };
+		C25DD0CE1C11AE1200D4CFCB /* YLPullDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0A11C11AE1200D4CFCB /* YLPullDownView.m */; };
+		C25DD0CF1C11AE1200D4CFCB /* YLMainTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0A51C11AE1200D4CFCB /* YLMainTabbarController.m */; };
+		C25DD0D01C11AE1200D4CFCB /* YLNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0A71C11AE1200D4CFCB /* YLNavigationViewController.m */; };
+		C25DD0D11C11AE1200D4CFCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0AB1C11AE1200D4CFCB /* AppDelegate.m */; };
+		C25DD0D21C11AE1200D4CFCB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0AC1C11AE1200D4CFCB /* main.m */; };
+		C25DD0D31C11AE1200D4CFCB /* YLTest1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0AF1C11AE1200D4CFCB /* YLTest1ViewController.m */; };
+		C25DD0D41C11AE1200D4CFCB /* YLTest1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25DD0B01C11AE1200D4CFCB /* YLTest1ViewController.xib */; };
+		C25DD0D51C11AE1200D4CFCB /* YLTest2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0B21C11AE1200D4CFCB /* YLTest2ViewController.m */; };
+		C25DD0D61C11AE1200D4CFCB /* YLTest2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25DD0B31C11AE1200D4CFCB /* YLTest2ViewController.xib */; };
+		C25DD0D71C11AE1200D4CFCB /* YLSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0B61C11AE1200D4CFCB /* YLSearchBar.m */; };
+		C25DD0D81C11AE1200D4CFCB /* YLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0B81C11AE1200D4CFCB /* YLTabBar.m */; };
+		C25DD0D91C11AE1200D4CFCB /* YLMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0BC1C11AE1200D4CFCB /* YLMessageTableViewController.m */; };
+		C25DD0DA1C11AE1200D4CFCB /* YLOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0C21C11AE1200D4CFCB /* YLOAuthViewController.m */; };
+		C25DD0DB1C11AE1200D4CFCB /* YLProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0C71C11AE1200D4CFCB /* YLProfileTableViewController.m */; };
+		C25DD0DE1C11AE2000D4CFCB /* YLMind.c in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0DC1C11AE2000D4CFCB /* YLMind.c */; };
+		C25DD0E01C11AE2700D4CFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */; };
+		E2A173776C5773251685FACE /* libPods-YLSinaBlogNew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		197754D493CEFCFDD732EEB1 /* Pods-YLSinaBlogNew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLSinaBlogNew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLSinaBlogNew/Pods-YLSinaBlogNew.debug.xcconfig"; sourceTree = "<group>"; };
+		19D6CFA3D62E24A8DE714C95 /* Pods-YLSinaBlogNew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLSinaBlogNew.release.xcconfig"; path = "Pods/Target Support Files/Pods-YLSinaBlogNew/Pods-YLSinaBlogNew.release.xcconfig"; sourceTree = "<group>"; };
+		3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLSinaBlogNew.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C25DD0741C11AD6D00D4CFCB /* YLSinaBlogNew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YLSinaBlogNew.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C25DD0881C11AD6D00D4CFCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C25DD0901C11AE1200D4CFCB /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
+		C25DD0911C11AE1200D4CFCB /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
+		C25DD0921C11AE1200D4CFCB /* UIView+YLExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YLExtension.h"; sourceTree = "<group>"; };
+		C25DD0931C11AE1200D4CFCB /* UIView+YLExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YLExtension.m"; sourceTree = "<group>"; };
+		C25DD0961C11AE1200D4CFCB /* YLDiscoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLDiscoverTableViewController.h; sourceTree = "<group>"; };
+		C25DD0971C11AE1200D4CFCB /* YLDiscoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLDiscoverTableViewController.m; sourceTree = "<group>"; };
+		C25DD09C1C11AE1200D4CFCB /* YLHomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLHomeTableViewController.h; sourceTree = "<group>"; };
+		C25DD09D1C11AE1200D4CFCB /* YLHomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLHomeTableViewController.m; sourceTree = "<group>"; };
+		C25DD0A01C11AE1200D4CFCB /* YLPullDownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLPullDownView.h; sourceTree = "<group>"; };
+		C25DD0A11C11AE1200D4CFCB /* YLPullDownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLPullDownView.m; sourceTree = "<group>"; };
+		C25DD0A41C11AE1200D4CFCB /* YLMainTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLMainTabbarController.h; sourceTree = "<group>"; };
+		C25DD0A51C11AE1200D4CFCB /* YLMainTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLMainTabbarController.m; sourceTree = "<group>"; };
+		C25DD0A61C11AE1200D4CFCB /* YLNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLNavigationViewController.h; sourceTree = "<group>"; };
+		C25DD0A71C11AE1200D4CFCB /* YLNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLNavigationViewController.m; sourceTree = "<group>"; };
+		C25DD0AA1C11AE1200D4CFCB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C25DD0AB1C11AE1200D4CFCB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C25DD0AC1C11AE1200D4CFCB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C25DD0AE1C11AE1200D4CFCB /* YLTest1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTest1ViewController.h; sourceTree = "<group>"; };
+		C25DD0AF1C11AE1200D4CFCB /* YLTest1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTest1ViewController.m; sourceTree = "<group>"; };
+		C25DD0B01C11AE1200D4CFCB /* YLTest1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YLTest1ViewController.xib; sourceTree = "<group>"; };
+		C25DD0B11C11AE1200D4CFCB /* YLTest2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTest2ViewController.h; sourceTree = "<group>"; };
+		C25DD0B21C11AE1200D4CFCB /* YLTest2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTest2ViewController.m; sourceTree = "<group>"; };
+		C25DD0B31C11AE1200D4CFCB /* YLTest2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YLTest2ViewController.xib; sourceTree = "<group>"; };
+		C25DD0B51C11AE1200D4CFCB /* YLSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLSearchBar.h; sourceTree = "<group>"; };
+		C25DD0B61C11AE1200D4CFCB /* YLSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLSearchBar.m; sourceTree = "<group>"; };
+		C25DD0B71C11AE1200D4CFCB /* YLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTabBar.h; sourceTree = "<group>"; };
+		C25DD0B81C11AE1200D4CFCB /* YLTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTabBar.m; sourceTree = "<group>"; };
+		C25DD0BB1C11AE1200D4CFCB /* YLMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLMessageTableViewController.h; sourceTree = "<group>"; };
+		C25DD0BC1C11AE1200D4CFCB /* YLMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLMessageTableViewController.m; sourceTree = "<group>"; };
+		C25DD0C11C11AE1200D4CFCB /* YLOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLOAuthViewController.h; sourceTree = "<group>"; };
+		C25DD0C21C11AE1200D4CFCB /* YLOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLOAuthViewController.m; sourceTree = "<group>"; };
+		C25DD0C61C11AE1200D4CFCB /* YLProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProfileTableViewController.h; sourceTree = "<group>"; };
+		C25DD0C71C11AE1200D4CFCB /* YLProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProfileTableViewController.m; sourceTree = "<group>"; };
+		C25DD0DC1C11AE2000D4CFCB /* YLMind.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = YLMind.c; sourceTree = "<group>"; };
+		C25DD0DD1C11AE2000D4CFCB /* YLPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLPrefixHeader.pch; sourceTree = "<group>"; };
+		C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C25DD0711C11AD6D00D4CFCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2A173776C5773251685FACE /* libPods-YLSinaBlogNew.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		43DD1F41D544D45DCF06AA37 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				197754D493CEFCFDD732EEB1 /* Pods-YLSinaBlogNew.debug.xcconfig */,
+				19D6CFA3D62E24A8DE714C95 /* Pods-YLSinaBlogNew.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C25DD06B1C11AD6D00D4CFCB = {
+			isa = PBXGroup;
+			children = (
+				C25DD0761C11AD6D00D4CFCB /* YLSinaBlogNew */,
+				C25DD0751C11AD6D00D4CFCB /* Products */,
+				43DD1F41D544D45DCF06AA37 /* Pods */,
+				D472A7FD04350008CF4886E3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C25DD0751C11AD6D00D4CFCB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0741C11AD6D00D4CFCB /* YLSinaBlogNew.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C25DD0761C11AD6D00D4CFCB /* YLSinaBlogNew */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0DC1C11AE2000D4CFCB /* YLMind.c */,
+				C25DD08E1C11AE1200D4CFCB /* classes */,
+				C25DD0771C11AD6D00D4CFCB /* Supporting Files */,
+			);
+			path = YLSinaBlogNew;
+			sourceTree = "<group>";
+		};
+		C25DD0771C11AD6D00D4CFCB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */,
+				C25DD0DD1C11AE2000D4CFCB /* YLPrefixHeader.pch */,
+				C25DD0881C11AD6D00D4CFCB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C25DD08E1C11AE1200D4CFCB /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD08F1C11AE1200D4CFCB /* Catogories */,
+				C25DD0941C11AE1200D4CFCB /* Discover */,
+				C25DD09A1C11AE1200D4CFCB /* Home */,
+				C25DD0A21C11AE1200D4CFCB /* Main */,
+				C25DD0B91C11AE1200D4CFCB /* Message */,
+				C25DD0BF1C11AE1200D4CFCB /* OAuth */,
+				C25DD0C31C11AE1200D4CFCB /* Other */,
+				C25DD0C41C11AE1200D4CFCB /* Profile */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+		C25DD08F1C11AE1200D4CFCB /* Catogories */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0901C11AE1200D4CFCB /* UIBarButtonItem+Extension.h */,
+				C25DD0911C11AE1200D4CFCB /* UIBarButtonItem+Extension.m */,
+				C25DD0921C11AE1200D4CFCB /* UIView+YLExtension.h */,
+				C25DD0931C11AE1200D4CFCB /* UIView+YLExtension.m */,
+			);
+			path = Catogories;
+			sourceTree = "<group>";
+		};
+		C25DD0941C11AE1200D4CFCB /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0951C11AE1200D4CFCB /* Controller */,
+				C25DD0981C11AE1200D4CFCB /* Model */,
+				C25DD0991C11AE1200D4CFCB /* View */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		C25DD0951C11AE1200D4CFCB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0961C11AE1200D4CFCB /* YLDiscoverTableViewController.h */,
+				C25DD0971C11AE1200D4CFCB /* YLDiscoverTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C25DD0981C11AE1200D4CFCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C25DD0991C11AE1200D4CFCB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C25DD09A1C11AE1200D4CFCB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD09B1C11AE1200D4CFCB /* Controller */,
+				C25DD09E1C11AE1200D4CFCB /* Model */,
+				C25DD09F1C11AE1200D4CFCB /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C25DD09B1C11AE1200D4CFCB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD09C1C11AE1200D4CFCB /* YLHomeTableViewController.h */,
+				C25DD09D1C11AE1200D4CFCB /* YLHomeTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C25DD09E1C11AE1200D4CFCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C25DD09F1C11AE1200D4CFCB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0A01C11AE1200D4CFCB /* YLPullDownView.h */,
+				C25DD0A11C11AE1200D4CFCB /* YLPullDownView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C25DD0A21C11AE1200D4CFCB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0A31C11AE1200D4CFCB /* Controller */,
+				C25DD0A81C11AE1200D4CFCB /* Model */,
+				C25DD0A91C11AE1200D4CFCB /* Other */,
+				C25DD0AD1C11AE1200D4CFCB /* temp */,
+				C25DD0B41C11AE1200D4CFCB /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		C25DD0A31C11AE1200D4CFCB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0A41C11AE1200D4CFCB /* YLMainTabbarController.h */,
+				C25DD0A51C11AE1200D4CFCB /* YLMainTabbarController.m */,
+				C25DD0A61C11AE1200D4CFCB /* YLNavigationViewController.h */,
+				C25DD0A71C11AE1200D4CFCB /* YLNavigationViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C25DD0A81C11AE1200D4CFCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C25DD0A91C11AE1200D4CFCB /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0AA1C11AE1200D4CFCB /* AppDelegate.h */,
+				C25DD0AB1C11AE1200D4CFCB /* AppDelegate.m */,
+				C25DD0AC1C11AE1200D4CFCB /* main.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		C25DD0AD1C11AE1200D4CFCB /* temp */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0AE1C11AE1200D4CFCB /* YLTest1ViewController.h */,
+				C25DD0AF1C11AE1200D4CFCB /* YLTest1ViewController.m */,
+				C25DD0B01C11AE1200D4CFCB /* YLTest1ViewController.xib */,
+				C25DD0B11C11AE1200D4CFCB /* YLTest2ViewController.h */,
+				C25DD0B21C11AE1200D4CFCB /* YLTest2ViewController.m */,
+				C25DD0B31C11AE1200D4CFCB /* YLTest2ViewController.xib */,
+			);
+			path = temp;
+			sourceTree = "<group>";
+		};
+		C25DD0B41C11AE1200D4CFCB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0B51C11AE1200D4CFCB /* YLSearchBar.h */,
+				C25DD0B61C11AE1200D4CFCB /* YLSearchBar.m */,
+				C25DD0B71C11AE1200D4CFCB /* YLTabBar.h */,
+				C25DD0B81C11AE1200D4CFCB /* YLTabBar.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C25DD0B91C11AE1200D4CFCB /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0BA1C11AE1200D4CFCB /* Controller */,
+				C25DD0BD1C11AE1200D4CFCB /* Model */,
+				C25DD0BE1C11AE1200D4CFCB /* View */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		C25DD0BA1C11AE1200D4CFCB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0BB1C11AE1200D4CFCB /* YLMessageTableViewController.h */,
+				C25DD0BC1C11AE1200D4CFCB /* YLMessageTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C25DD0BD1C11AE1200D4CFCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C25DD0BE1C11AE1200D4CFCB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C25DD0BF1C11AE1200D4CFCB /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0C01C11AE1200D4CFCB /* controller */,
+			);
+			path = OAuth;
+			sourceTree = "<group>";
+		};
+		C25DD0C01C11AE1200D4CFCB /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0C11C11AE1200D4CFCB /* YLOAuthViewController.h */,
+				C25DD0C21C11AE1200D4CFCB /* YLOAuthViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		C25DD0C31C11AE1200D4CFCB /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		C25DD0C41C11AE1200D4CFCB /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0C51C11AE1200D4CFCB /* Controller */,
+				C25DD0C81C11AE1200D4CFCB /* Model */,
+				C25DD0C91C11AE1200D4CFCB /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C25DD0C51C11AE1200D4CFCB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C25DD0C61C11AE1200D4CFCB /* YLProfileTableViewController.h */,
+				C25DD0C71C11AE1200D4CFCB /* YLProfileTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C25DD0C81C11AE1200D4CFCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C25DD0C91C11AE1200D4CFCB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D472A7FD04350008CF4886E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C25DD0731C11AD6D00D4CFCB /* YLSinaBlogNew */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C25DD08B1C11AD6D00D4CFCB /* Build configuration list for PBXNativeTarget "YLSinaBlogNew" */;
+			buildPhases = (
+				48E68DE24F639659E336009A /* Check Pods Manifest.lock */,
+				C25DD0701C11AD6D00D4CFCB /* Sources */,
+				C25DD0711C11AD6D00D4CFCB /* Frameworks */,
+				C25DD0721C11AD6D00D4CFCB /* Resources */,
+				3D6566F9239C4CEBEB8E7624 /* Embed Pods Frameworks */,
+				D4D8323BCB0634A7ABC9AEF9 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YLSinaBlogNew;
+			productName = YLSinaBlogNew;
+			productReference = C25DD0741C11AD6D00D4CFCB /* YLSinaBlogNew.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C25DD06C1C11AD6D00D4CFCB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = LongMa;
+				TargetAttributes = {
+					C25DD0731C11AD6D00D4CFCB = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = C5MCKBCJ7H;
+					};
+				};
+			};
+			buildConfigurationList = C25DD06F1C11AD6D00D4CFCB /* Build configuration list for PBXProject "YLSinaBlogNew" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C25DD06B1C11AD6D00D4CFCB;
+			productRefGroup = C25DD0751C11AD6D00D4CFCB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C25DD0731C11AD6D00D4CFCB /* YLSinaBlogNew */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C25DD0721C11AD6D00D4CFCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C25DD0D61C11AE1200D4CFCB /* YLTest2ViewController.xib in Resources */,
+				C25DD0E01C11AE2700D4CFCB /* Assets.xcassets in Resources */,
+				C25DD0D41C11AE1200D4CFCB /* YLTest1ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3D6566F9239C4CEBEB8E7624 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YLSinaBlogNew/Pods-YLSinaBlogNew-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48E68DE24F639659E336009A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D4D8323BCB0634A7ABC9AEF9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YLSinaBlogNew/Pods-YLSinaBlogNew-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C25DD0701C11AD6D00D4CFCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C25DD0CC1C11AE1200D4CFCB /* YLDiscoverTableViewController.m in Sources */,
+				C25DD0CA1C11AE1200D4CFCB /* UIBarButtonItem+Extension.m in Sources */,
+				C25DD0CB1C11AE1200D4CFCB /* UIView+YLExtension.m in Sources */,
+				C25DD0D31C11AE1200D4CFCB /* YLTest1ViewController.m in Sources */,
+				C25DD0D91C11AE1200D4CFCB /* YLMessageTableViewController.m in Sources */,
+				C25DD0D01C11AE1200D4CFCB /* YLNavigationViewController.m in Sources */,
+				C25DD0DB1C11AE1200D4CFCB /* YLProfileTableViewController.m in Sources */,
+				C25DD0D11C11AE1200D4CFCB /* AppDelegate.m in Sources */,
+				C25DD0D51C11AE1200D4CFCB /* YLTest2ViewController.m in Sources */,
+				C25DD0CD1C11AE1200D4CFCB /* YLHomeTableViewController.m in Sources */,
+				C25DD0D71C11AE1200D4CFCB /* YLSearchBar.m in Sources */,
+				C25DD0CE1C11AE1200D4CFCB /* YLPullDownView.m in Sources */,
+				C25DD0D21C11AE1200D4CFCB /* main.m in Sources */,
+				C25DD0DE1C11AE2000D4CFCB /* YLMind.c in Sources */,
+				C25DD0DA1C11AE1200D4CFCB /* YLOAuthViewController.m in Sources */,
+				C25DD0CF1C11AE1200D4CFCB /* YLMainTabbarController.m in Sources */,
+				C25DD0D81C11AE1200D4CFCB /* YLTabBar.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C25DD0891C11AD6D00D4CFCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C25DD08A1C11AD6D00D4CFCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C25DD08C1C11AD6D00D4CFCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 197754D493CEFCFDD732EEB1 /* Pods-YLSinaBlogNew.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YLSinaBlogNew/YLPrefixHeader.pch";
+				INFOPLIST_FILE = YLSinaBlogNew/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dast1.YLSinaBlogNew;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		C25DD08D1C11AD6D00D4CFCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19D6CFA3D62E24A8DE714C95 /* Pods-YLSinaBlogNew.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/YLSinaBlogNew/YLPrefixHeader.pch";
+				INFOPLIST_FILE = YLSinaBlogNew/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dast1.YLSinaBlogNew;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C25DD06F1C11AD6D00D4CFCB /* Build configuration list for PBXProject "YLSinaBlogNew" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C25DD0891C11AD6D00D4CFCB /* Debug */,
+				C25DD08A1C11AD6D00D4CFCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C25DD08B1C11AD6D00D4CFCB /* Build configuration list for PBXNativeTarget "YLSinaBlogNew" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C25DD08C1C11AD6D00D4CFCB /* Debug */,
+				C25DD08D1C11AD6D00D4CFCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C25DD06C1C11AD6D00D4CFCB /* Project object */;
+}

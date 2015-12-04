@@ -1,0 +1,33 @@
+//
+//  YLPrefixHeader.pch
+//  YLSinaBlog
+//
+//  Created by LongMa on 15/11/29.
+//  Copyright © 2015年 LongMa. All rights reserved.
+//
+
+#ifndef YLPrefixHeader_pch
+#define YLPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+
+    #define YLColor(r,g,b)  [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1];
+    #define YLRandomColor YLColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+
+    #import "UIView+YLExtension.h"
+    #import "UIBarButtonItem+Extension.h"
+    #import "YLSearchBar.h"
+
+#endif
+
+#ifdef DEBUG
+#define YLLOG(...) NSLog(__VA_ARGS__)
+#else
+#define YLLOG(...)
+#endif
+
+
+#endif /* YLPrefixHeader_pch */
