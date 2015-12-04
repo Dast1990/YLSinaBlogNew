@@ -136,14 +136,14 @@
 		C25DD08E1C11AE1200D4CFCB /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				C25DD08F1C11AE1200D4CFCB /* Catogories */,
-				C25DD0941C11AE1200D4CFCB /* Discover */,
-				C25DD09A1C11AE1200D4CFCB /* Home */,
-				C25DD0A21C11AE1200D4CFCB /* Main */,
-				C25DD0B91C11AE1200D4CFCB /* Message */,
 				C25DD0BF1C11AE1200D4CFCB /* OAuth */,
-				C25DD0C31C11AE1200D4CFCB /* Other */,
+				C25DD0A21C11AE1200D4CFCB /* Main */,
+				C25DD09A1C11AE1200D4CFCB /* Home */,
+				C25DD0B91C11AE1200D4CFCB /* Message */,
+				C25DD0941C11AE1200D4CFCB /* Discover */,
 				C25DD0C41C11AE1200D4CFCB /* Profile */,
+				C25DD0C31C11AE1200D4CFCB /* Other */,
+				C25DD08F1C11AE1200D4CFCB /* Catogories */,
 			);
 			path = classes;
 			sourceTree = "<group>";
