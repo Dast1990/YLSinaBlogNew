@@ -27,6 +27,7 @@
 		C25DD0DB1C11AE1200D4CFCB /* YLProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0C71C11AE1200D4CFCB /* YLProfileTableViewController.m */; };
 		C25DD0DE1C11AE2000D4CFCB /* YLMind.c in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0DC1C11AE2000D4CFCB /* YLMind.c */; };
 		C25DD0E01C11AE2700D4CFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */; };
+		C268FE261C13CFBE00E39FCE /* YLNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = C268FE251C13CFBE00E39FCE /* YLNewFeatureController.m */; };
 		E2A173776C5773251685FACE /* libPods-YLSinaBlogNew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,8 @@
 		C25DD0DC1C11AE2000D4CFCB /* YLMind.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = YLMind.c; sourceTree = "<group>"; };
 		C25DD0DD1C11AE2000D4CFCB /* YLPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLPrefixHeader.pch; sourceTree = "<group>"; };
 		C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C268FE241C13CFBE00E39FCE /* YLNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLNewFeatureController.h; sourceTree = "<group>"; };
+		C268FE251C13CFBE00E39FCE /* YLNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLNewFeatureController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,8 @@
 		C25DD08E1C11AE1200D4CFCB /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				C25DD0A91C11AE1200D4CFCB /* Other */,
+				C268FE1F1C13CCD400E39FCE /* NewFeature */,
 				C25DD0BF1C11AE1200D4CFCB /* OAuth */,
 				C25DD0A21C11AE1200D4CFCB /* Main */,
 				C25DD09A1C11AE1200D4CFCB /* Home */,
@@ -232,7 +237,6 @@
 			children = (
 				C25DD0A31C11AE1200D4CFCB /* Controller */,
 				C25DD0A81C11AE1200D4CFCB /* Model */,
-				C25DD0A91C11AE1200D4CFCB /* Other */,
 				C25DD0AD1C11AE1200D4CFCB /* temp */,
 				C25DD0B41C11AE1200D4CFCB /* View */,
 			);
@@ -264,7 +268,8 @@
 				C25DD0AB1C11AE1200D4CFCB /* AppDelegate.m */,
 				C25DD0AC1C11AE1200D4CFCB /* main.m */,
 			);
-			path = Other;
+			name = Other;
+			path = Main/Other;
 			sourceTree = "<group>";
 		};
 		C25DD0AD1C11AE1200D4CFCB /* temp */ = {
@@ -379,6 +384,23 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C268FE1F1C13CCD400E39FCE /* NewFeature */ = {
+			isa = PBXGroup;
+			children = (
+				C268FE201C13CCD400E39FCE /* Controller */,
+			);
+			path = NewFeature;
+			sourceTree = "<group>";
+		};
+		C268FE201C13CCD400E39FCE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C268FE241C13CFBE00E39FCE /* YLNewFeatureController.h */,
+				C268FE251C13CFBE00E39FCE /* YLNewFeatureController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		D472A7FD04350008CF4886E3 /* Frameworks */ = {
@@ -519,6 +541,7 @@
 				C25DD0D01C11AE1200D4CFCB /* YLNavigationViewController.m in Sources */,
 				C25DD0DB1C11AE1200D4CFCB /* YLProfileTableViewController.m in Sources */,
 				C25DD0D11C11AE1200D4CFCB /* AppDelegate.m in Sources */,
+				C268FE261C13CFBE00E39FCE /* YLNewFeatureController.m in Sources */,
 				C25DD0D51C11AE1200D4CFCB /* YLTest2ViewController.m in Sources */,
 				C25DD0CD1C11AE1200D4CFCB /* YLHomeTableViewController.m in Sources */,
 				C25DD0D71C11AE1200D4CFCB /* YLSearchBar.m in Sources */,

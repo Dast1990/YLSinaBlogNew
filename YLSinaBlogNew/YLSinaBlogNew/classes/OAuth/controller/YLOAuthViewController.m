@@ -28,6 +28,7 @@
     self.webView = webView;
     
     [self webViewOperation];
+
 }
 
 
@@ -85,7 +86,7 @@
     dicM[@"redirect_uri"] = @"http://www.baidu.com/";
     
     //  AFN请求token,下面用 AFHTTPRequestOperationManager创建管理器，实现对应POST方法，修改底层接收格式。也行！
-    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager]; 
     //    sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [sessionManager POST:@"https://api.weibo.com/oauth2/access_token" parameters:dicM success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
