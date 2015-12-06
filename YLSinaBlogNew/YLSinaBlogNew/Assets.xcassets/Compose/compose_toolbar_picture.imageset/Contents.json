@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "compose_toolbar_picture.png",
       "scale" : "1x"
     },
     {

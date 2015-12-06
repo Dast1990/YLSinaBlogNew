@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "compose_camerabutton_background_highlighted.png",
       "scale" : "1x"
     },
     {
