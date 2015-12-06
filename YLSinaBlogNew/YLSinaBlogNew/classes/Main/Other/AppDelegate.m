@@ -10,6 +10,8 @@
 #import "YLMainTabbarController.h"
 #import "YLOAuthViewController.h"
 
+#import "YLNewFeatureController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -22,7 +24,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
 //    self.window.rootViewController = [[YLMainTabbarController alloc] init];
-    self.window.rootViewController = [[YLOAuthViewController alloc] init];
+//    self.window.rootViewController = [[YLOAuthViewController alloc] init];
+    self.window.rootViewController = [[YLNewFeatureController alloc] init];
     [self.window makeKeyAndVisible];
     
     return YES;

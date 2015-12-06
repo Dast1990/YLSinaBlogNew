@@ -14,12 +14,14 @@
 
 #ifdef __OBJC__
 
-    #define YLColor(r,g,b)  [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1];
-    #define YLRandomColor YLColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+#import "UIView+YLExtension.h"
+#import "UIBarButtonItem+Extension.h"
+#import "YLSearchBar.h"
 
-    #import "UIView+YLExtension.h"
-    #import "UIBarButtonItem+Extension.h"
-    #import "YLSearchBar.h"
+//预防缺失的情况
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
 
 #endif
 
@@ -28,6 +30,20 @@
 #else
 #define YLLOG(...)
 #endif
+
+
+//定义UIImage对象
+#define YLIMAGE(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
+// 获取RGB颜色
+#define YLRGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define YLRGB(r,g,b) RGBA(r,g,b,1.0f)
+#define YLRandomColor YLColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+//读取本地图片
+#define YLLOADIMAGE(file,ext) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:ext]]
+
+//获取屏幕 宽度、高度
+#define YLSCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define YLSCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
 
 #endif /* YLPrefixHeader_pch */
