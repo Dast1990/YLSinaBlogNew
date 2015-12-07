@@ -20,12 +20,30 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //    1见
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
-//    self.window.rootViewController = [[YLMainTabbarController alloc] init];
-//    self.window.rootViewController = [[YLOAuthViewController alloc] init];
-    self.window.rootViewController = [[YLNewFeatureController alloc] init];
+    //    self.window.rootViewController = [[YLOAuthViewController alloc] init];
+    
+    //    2.设 置根控制器：当前版本号与上次存储的版本号不一致时，显示新特性。
+    NSString *versionKey = @"CFBundleVersion";
+    NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:versionKey];
+    
+    NSDictionary *infoDic = [NSBundle mainBundle].infoDictionary;
+    //    YLLOG(@"%@", infoDic);
+    NSString *currentVersion = infoDic[versionKey];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if ([currentVersion isEqualToString:lastVersion]) {
+        self.window.rootViewController = [[YLMainTabbarController alloc] init];
+    }else{
+        self.window.rootViewController = [[YLNewFeatureController alloc] init];
+    }
+    
+    //    3 显
     [self.window makeKeyAndVisible];
     
     return YES;

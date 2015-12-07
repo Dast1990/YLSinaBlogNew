@@ -41,11 +41,11 @@
              normalImageName:@"tabbar_profile"
                selectedImage:@"tabbar_profile_highlighted"];
     
-    YLLOG(@"%@", self.tabBar);
+//    YLLOG(@"%@", self.tabBar);
     //    kvc实现：自定义tabbar替换系统tabbar
     YLTabBar *ylTabbar = [YLTabBar tabBar];
     [self setValue:ylTabbar forKeyPath:@"tabBar"];
-    YLLOG(@"%@", ylTabbar);
+//    YLLOG(@"%@", ylTabbar);
     
     ylTabbar.myDelegate = self;
 }
@@ -65,7 +65,7 @@
            normalImageName:(NSString *)normalImg
              selectedImage:(NSString *)selectedImage{
     
-    YLLOG(@"%@", self.tabBar);
+//    YLLOG(@"%@", self.tabBar);
     childVC.title = title;
     childVC.tabBarItem.image = [[UIImage imageNamed:normalImg]
                                 imageWithRenderingMode:(UIImageRenderingModeAlwaysOriginal)];
