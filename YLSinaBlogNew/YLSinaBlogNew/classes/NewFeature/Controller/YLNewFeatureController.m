@@ -130,7 +130,7 @@
     [UIView animateWithDuration:10 animations:^{
         self.view.frame = destiFrame;
         NSLog(@"3");
-           } completion:^(BOOL finished) {
+           } completion:^(BOOL finished) { 
         YLLOG(@"动画完毕");
 //       YLLOG(@"%@",self.view);
     }];
