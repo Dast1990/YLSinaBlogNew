@@ -127,14 +127,13 @@
     CGRect destiFrame = CGRectMake(-self.view.width, 0, self.view.width, self.view.height);
     
     YLLOG(@"%@",NSStringFromCGRect(self.view.frame));
-    [UIView animateWithDuration:10 animations:^{
+    [UIView animateWithDuration:2 animations:^{
         self.view.frame = destiFrame;
         NSLog(@"3");
-           } completion:^(BOOL finished) { 
+           } completion:^(BOOL finished) {
         YLLOG(@"动画完毕");
 //       YLLOG(@"%@",self.view);
     }];
-    
     YLLOG(@"4");
 }
 

@@ -8,6 +8,7 @@
 
 #import "YLOAuthViewController.h"
 #import <AFNetworking.h>
+#import <SVProgressHUD.h>
 
 @interface YLOAuthViewController ()<UIWebViewDelegate>
 @property (nonatomic, weak) UIWebView *webView;
@@ -45,6 +46,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     YLLOG(@"%s", __func__);
     YLLOG(@"%@", request);
+    [SVProgressHUD showWithStatus:@"将要开始加载网络请求"];
     
 #warning 注意：要熟练
     //    1.获得url字符串
@@ -99,14 +101,24 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     YLLOG(@"%s", __func__);
+    [SVProgressHUD showInfoWithStatus:@"已经开始加载网页"];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     YLLOG(@"%s", __func__);
+//    [SVProgressHUD showSuccessWithStatus:@"加载完成！"];
+    [SVProgressHUD showImage:[UIImage imageNamed:@"compose_camerabutton_background_highlighted_os7"] status:@"加载完成-可以自定义图片啊！"];
+//下面这句并没有效果！
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+//    下面不用设置，默认有延迟消失时长
+    [SVProgressHUD dismissWithDelay:10];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     YLLOG(@"%s", __func__);
+    [SVProgressHUD showErrorWithStatus:@"加载失败"];
+//    设置失败提示框  延迟消失时间
+    [SVProgressHUD dismissWithDelay:2];
 }
 
 - (BOOL)prefersStatusBarHidden{
