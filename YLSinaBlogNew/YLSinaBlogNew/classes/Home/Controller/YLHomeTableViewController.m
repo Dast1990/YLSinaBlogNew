@@ -20,10 +20,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setUpUI];
+}
+
+- (void)setUpUI{
     [self setUpItems];
     [self setUpTitleView];
 }
-
 
 - (void)setUpTitleView{
     //    设置导航栏中心视图

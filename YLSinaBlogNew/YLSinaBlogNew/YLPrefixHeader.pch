@@ -17,6 +17,7 @@
 #import "UIView+YLExtension.h"
 #import "UIBarButtonItem+Extension.h"
 #import "YLSearchBar.h"
+#import "UIWindow+Extension.h"
 
 //预防缺失的情况
 #import <UIKit/UIKit.h>

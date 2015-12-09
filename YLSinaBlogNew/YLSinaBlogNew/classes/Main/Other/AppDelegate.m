@@ -7,10 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "YLMainTabbarController.h"
 #import "YLOAuthViewController.h"
 
-#import "YLNewFeatureController.h"
+#import "YLAccountTool.h"
 
 @interface AppDelegate ()
 
@@ -26,28 +25,10 @@
     
     //    2.设 置根控制器：当前版本号与上次存储的版本号不一致时，显示新特性。
     //    doc中是否有account信息
-    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-    NSString *accountPath = [docPath stringByAppendingPathComponent:@"account.plist"];
-    
-    NSDictionary *account = [NSKeyedUnarchiver unarchiveObjectWithFile:accountPath];
+    YLAccountTool *account = [YLAccountTool account];
     
     if (account) {
-        NSString *versionKey = @"CFBundleVersion";
-        NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:versionKey];
-        
-        NSDictionary *infoDic = [NSBundle mainBundle].infoDictionary;
-        //    YLLOG(@"%@", infoDic);
-        NSString *currentVersion = infoDic[versionKey];
-        
-        
-        if ([currentVersion isEqualToString:lastVersion]) {
-            self.window.rootViewController = [[YLMainTabbarController alloc] init];
-        }else{
-            //        下面这两句放到else里很适合，放外面时，当不需要显示新特性时，下两句没必要执行。
-            [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            self.window.rootViewController = [[YLNewFeatureController alloc] init];
-        }
+        [self.window newFeatureJudgeAndSetRootViewController];
     }else{
         self.window.rootViewController = [[YLOAuthViewController alloc] init];
     }

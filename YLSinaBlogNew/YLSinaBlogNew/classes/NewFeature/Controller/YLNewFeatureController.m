@@ -119,22 +119,18 @@
 - (void)jumpBtnDidClick{
 #warning 注意：//    若已勾选分享按钮，跳到已登录界面前，自动生成包含新特性内容的写说说界面
     [UIApplication sharedApplication].keyWindow.rootViewController = [[YLMainTabbarController alloc] init];
-    #warning 注意：？
-//    为了显示动画效果，必须把self.view(self:YLNewFeatureController，到本方法结束才会被销毁？不是没有强引用会被立即销毁吗？，所以方法里还可用)添加到现在显示的根控制器（MainVC）的视图    或  keyWindow  上。
-    YLLOG(@"1");
+    //    为了显示动画效果，必须把self.view(self:YLNewFeatureController，到本方法结束才会被销毁？不是没有强引用会被立即销毁吗？，所以方法里还可用)添加到现在显示的根控制器（MainVC）的视图    或  keyWindow  上。
     [[UIApplication sharedApplication].keyWindow addSubview:self.view];
-    YLLOG(@"2");
     CGRect destiFrame = CGRectMake(-self.view.width, 0, self.view.width, self.view.height);
     
     YLLOG(@"%@",NSStringFromCGRect(self.view.frame));
     [UIView animateWithDuration:2 animations:^{
         self.view.frame = destiFrame;
-        NSLog(@"3");
-           } completion:^(BOOL finished) {
+    } completion:^(BOOL finished) {
+        //               completion是异步回调
         YLLOG(@"动画完毕");
-//       YLLOG(@"%@",self.view);
+        //       YLLOG(@"%@",self.view);
     }];
-    YLLOG(@"4");
 }
 
 - (void)dealloc{

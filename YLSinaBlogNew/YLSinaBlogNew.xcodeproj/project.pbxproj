@@ -29,6 +29,8 @@
 		C25DD0DE1C11AE2000D4CFCB /* YLMind.c in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0DC1C11AE2000D4CFCB /* YLMind.c */; };
 		C25DD0E01C11AE2700D4CFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */; };
 		C268FE261C13CFBE00E39FCE /* YLNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = C268FE251C13CFBE00E39FCE /* YLNewFeatureController.m */; };
+		C2EC3D671C188E18002CD392 /* YLAccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EC3D661C188E18002CD392 /* YLAccountTool.m */; };
+		C2EC3D6D1C189341002CD392 /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EC3D6C1C189341002CD392 /* UIWindow+Extension.m */; };
 		E2A173776C5773251685FACE /* libPods-YLSinaBlogNew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,10 @@
 		C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C268FE241C13CFBE00E39FCE /* YLNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLNewFeatureController.h; sourceTree = "<group>"; };
 		C268FE251C13CFBE00E39FCE /* YLNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLNewFeatureController.m; sourceTree = "<group>"; };
+		C2EC3D651C188E18002CD392 /* YLAccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAccountTool.h; sourceTree = "<group>"; };
+		C2EC3D661C188E18002CD392 /* YLAccountTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAccountTool.m; sourceTree = "<group>"; };
+		C2EC3D6B1C189341002CD392 /* UIWindow+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extension.h"; sourceTree = "<group>"; };
+		C2EC3D6C1C189341002CD392 /* UIWindow+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +156,6 @@
 				C25DD0B91C11AE1200D4CFCB /* Message */,
 				C25DD0941C11AE1200D4CFCB /* Discover */,
 				C25DD0C41C11AE1200D4CFCB /* Profile */,
-				C25DD0C31C11AE1200D4CFCB /* Other */,
 				C25DD08F1C11AE1200D4CFCB /* Catogories */,
 			);
 			path = classes;
@@ -163,6 +168,8 @@
 				C25DD0911C11AE1200D4CFCB /* UIBarButtonItem+Extension.m */,
 				C25DD0921C11AE1200D4CFCB /* UIView+YLExtension.h */,
 				C25DD0931C11AE1200D4CFCB /* UIView+YLExtension.m */,
+				C2EC3D6B1C189341002CD392 /* UIWindow+Extension.h */,
+				C2EC3D6C1C189341002CD392 /* UIWindow+Extension.m */,
 			);
 			path = Catogories;
 			sourceTree = "<group>";
@@ -241,6 +248,7 @@
 				C25DD0A31C11AE1200D4CFCB /* Controller */,
 				C25DD0A81C11AE1200D4CFCB /* Model */,
 				C25DD0AD1C11AE1200D4CFCB /* temp */,
+				C2EC3D641C188DDA002CD392 /* tool */,
 				C25DD0B41C11AE1200D4CFCB /* View */,
 			);
 			path = Main;
@@ -351,13 +359,6 @@
 			path = controller;
 			sourceTree = "<group>";
 		};
-		C25DD0C31C11AE1200D4CFCB /* Other */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
 		C25DD0C41C11AE1200D4CFCB /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,6 +407,15 @@
 				C268FE251C13CFBE00E39FCE /* YLNewFeatureController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		C2EC3D641C188DDA002CD392 /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				C2EC3D651C188E18002CD392 /* YLAccountTool.h */,
+				C2EC3D661C188E18002CD392 /* YLAccountTool.m */,
+			);
+			path = tool;
 			sourceTree = "<group>";
 		};
 		D472A7FD04350008CF4886E3 /* Frameworks */ = {
@@ -539,6 +549,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C25DD0CC1C11AE1200D4CFCB /* YLDiscoverTableViewController.m in Sources */,
+				C2EC3D6D1C189341002CD392 /* UIWindow+Extension.m in Sources */,
 				C25DD0CA1C11AE1200D4CFCB /* UIBarButtonItem+Extension.m in Sources */,
 				C25DD0CB1C11AE1200D4CFCB /* UIView+YLExtension.m in Sources */,
 				C25DD0D31C11AE1200D4CFCB /* YLTest1ViewController.m in Sources */,
@@ -552,6 +563,7 @@
 				C25DD0D71C11AE1200D4CFCB /* YLSearchBar.m in Sources */,
 				C25DD0CE1C11AE1200D4CFCB /* YLPullDownView.m in Sources */,
 				C25DD0D21C11AE1200D4CFCB /* main.m in Sources */,
+				C2EC3D671C188E18002CD392 /* YLAccountTool.m in Sources */,
 				C25DD0DE1C11AE2000D4CFCB /* YLMind.c in Sources */,
 				C25DD0DA1C11AE1200D4CFCB /* YLOAuthViewController.m in Sources */,
 				C2168F9B1C1824CF00A11DFC /* YLAccountModel.m in Sources */,
