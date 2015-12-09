@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C2168F9B1C1824CF00A11DFC /* YLAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2168F9A1C1824CF00A11DFC /* YLAccountModel.m */; };
 		C25DD0CA1C11AE1200D4CFCB /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0911C11AE1200D4CFCB /* UIBarButtonItem+Extension.m */; };
 		C25DD0CB1C11AE1200D4CFCB /* UIView+YLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0931C11AE1200D4CFCB /* UIView+YLExtension.m */; };
 		C25DD0CC1C11AE1200D4CFCB /* YLDiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0971C11AE1200D4CFCB /* YLDiscoverTableViewController.m */; };
@@ -35,6 +36,8 @@
 		197754D493CEFCFDD732EEB1 /* Pods-YLSinaBlogNew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLSinaBlogNew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLSinaBlogNew/Pods-YLSinaBlogNew.debug.xcconfig"; sourceTree = "<group>"; };
 		19D6CFA3D62E24A8DE714C95 /* Pods-YLSinaBlogNew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLSinaBlogNew.release.xcconfig"; path = "Pods/Target Support Files/Pods-YLSinaBlogNew/Pods-YLSinaBlogNew.release.xcconfig"; sourceTree = "<group>"; };
 		3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLSinaBlogNew.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2168F991C1824CF00A11DFC /* YLAccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAccountModel.h; sourceTree = "<group>"; };
+		C2168F9A1C1824CF00A11DFC /* YLAccountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAccountModel.m; sourceTree = "<group>"; };
 		C25DD0741C11AD6D00D4CFCB /* YLSinaBlogNew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YLSinaBlogNew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C25DD0881C11AD6D00D4CFCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C25DD0901C11AE1200D4CFCB /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 		C25DD0A81C11AE1200D4CFCB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C2168F991C1824CF00A11DFC /* YLAccountModel.h */,
+				C2168F9A1C1824CF00A11DFC /* YLAccountModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				C25DD0D21C11AE1200D4CFCB /* main.m in Sources */,
 				C25DD0DE1C11AE2000D4CFCB /* YLMind.c in Sources */,
 				C25DD0DA1C11AE1200D4CFCB /* YLOAuthViewController.m in Sources */,
+				C2168F9B1C1824CF00A11DFC /* YLAccountModel.m in Sources */,
 				C25DD0CF1C11AE1200D4CFCB /* YLMainTabbarController.m in Sources */,
 				C25DD0D81C11AE1200D4CFCB /* YLTabBar.m in Sources */,
 			);

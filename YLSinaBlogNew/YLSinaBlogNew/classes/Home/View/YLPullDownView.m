@@ -15,7 +15,7 @@
     if (!_containerView) {
         // 添加一个灰色图片控件
         UIImageView *containerView = [[UIImageView alloc] init];
-        containerView.image = [UIImage imageNamed:@"popover_background"];
+        containerView.image = [UIImage imageNamed:@"timeline_retweet_background_os7"];
         containerView.userInteractionEnabled = YES; // 开启交互
         [self addSubview:containerView];
         self.containerView = containerView;

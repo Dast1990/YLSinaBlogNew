@@ -10,6 +10,10 @@
 #import <AFNetworking.h>
 #import <SVProgressHUD.h>
 
+#import "YLMainTabbarController.h"
+#import "YLNewFeatureController.h"
+#import "YLAccountModel.h"
+
 @interface YLOAuthViewController ()<UIWebViewDelegate>
 @property (nonatomic, weak) UIWebView *webView;
 
@@ -91,8 +95,36 @@
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager]; 
     //    sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    [sessionManager POST:@"https://api.weibo.com/oauth2/access_token" parameters:dicM success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [sessionManager POST:@"https://api.weibo.com/oauth2/access_token" parameters:dicM success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {//可以改系统的参数名（提高可读性）或参数类型（的确是某个类型时）
         YLLOG(@"请求成功：%@", responseObject);
+//        存account信息
+        NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+        NSString *accountPath = [docPath stringByAppendingPathComponent:@"account.plist"];
+        
+        YLAccountModel *accountModel = [YLAccountModel accountModleWithDic:responseObject];
+        [NSKeyedArchiver archiveRootObject:accountModel toFile:accountPath];
+
+        
+        
+//        判断是否需要显示新特性
+        NSString *versionKey = @"CFBundleVersion";
+        NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:versionKey];
+        
+        NSDictionary *infoDic = [NSBundle mainBundle].infoDictionary;
+        //    YLLOG(@"%@", infoDic);
+        NSString *currentVersion = infoDic[versionKey];
+        
+        UIWindow *ylKeyWindow = [UIApplication sharedApplication].keyWindow;
+        if ([currentVersion isEqualToString:lastVersion]) {
+            ylKeyWindow.rootViewController = [[YLMainTabbarController alloc] init];
+        }else{
+            //        下面这两句放到else里很适合，放外面时，当不需要显示新特性时，下两句没必要执行。
+            [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            ylKeyWindow.rootViewController = [[YLNewFeatureController alloc] init];
+        }
+        
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         YLLOG(@"请求失败：%@", error);
     }];

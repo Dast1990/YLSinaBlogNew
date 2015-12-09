@@ -5,6 +5,20 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "stretch",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 19,
+          "top" : 18,
+          "right" : 35,
+          "left" : 1
+        }
+      },
       "idiom" : "universal",
       "filename" : "timeline_retweet_background_os7@2x.png",
       "scale" : "2x"

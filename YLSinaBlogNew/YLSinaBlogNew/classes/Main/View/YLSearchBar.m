@@ -13,7 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         //    见天色
-        self.background = [UIImage imageNamed:@"common_button_white_disable"];
+        self.background = [UIImage imageNamed:@"searchbar_textfield_background_os7"];
         self.font = [UIFont systemFontOfSize:15];
         self.placeholder = @"请输入搜索内容";
         
