@@ -7,19 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+@class YLAccountModel;
 
 @interface YLAccountTool : NSObject
 /**
- *  账户字典转模型后，存入到doc
+ *  把模型存到沙盒
  *
- *  @param dic 账户字典
+ *  @param account 模型
  */
-+ (void)storeAccountWithDic:(NSDictionary *)dic;
++ (void)storeAccount:(YLAccountModel *)account;
+
 /**
- *  获取账户信息
+ *  获取账户模型对象
  *
- *  @return 账户对象
+ *  @return 账户模型对象
  */
-+ (instancetype)account;
++ (YLAccountModel *)account;
 
 @end

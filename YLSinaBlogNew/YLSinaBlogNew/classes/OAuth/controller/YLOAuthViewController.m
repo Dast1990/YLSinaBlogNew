@@ -96,7 +96,8 @@
     
     [sessionManager POST:@"https://api.weibo.com/oauth2/access_token" parameters:dicM success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {//可以改系统的参数名（提高可读性）或参数类型（的确是某个类型时）
         YLLOG(@"请求成功：%@", responseObject);
-        [YLAccountTool storeAccountWithDic:responseObject];
+        YLAccountModel *accountModel = [YLAccountModel accountModleWithDic:responseObject];
+        [YLAccountTool storeAccount:accountModel];
         
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
         [window newFeatureJudgeAndSetRootViewController];

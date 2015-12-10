@@ -13,14 +13,26 @@
 
 @implementation YLAccountTool
 
-+ (void)storeAccountWithDic:(NSDictionary *)dic{
++ (void)storeAccount:(YLAccountModel *)account{
     //        存account信息
-    YLAccountModel *accountModel = [YLAccountModel accountModleWithDic:dic];
-    [NSKeyedArchiver archiveRootObject:accountModel toFile:YLAccountPath];
+    [NSKeyedArchiver archiveRootObject:account toFile:YLAccountPath];
 }
 
-+ (instancetype)account{
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:YLAccountPath];
++ (YLAccountModel *)account{
+    YLAccountModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:YLAccountPath];
+    
+//    没有过期就返回model，否则，返回nil
+    long long expires_in = [model.expires_in longLongValue];
+    NSDate *exprireEndTime = [model.timeOfAccountAutho dateByAddingTimeInterval:expires_in];
+    NSDate *timeOfNow = [NSDate date];
+    NSComparisonResult result = [timeOfNow compare: exprireEndTime];
+    YLLOG(@"%@, %@", timeOfNow, exprireEndTime);
+    
+//    注意条件判断，只有当 timeOfNow 小于 exprireEndTime（升序）时，才返回模型。也就是说 当不为 升序 时，就返回nil
+    if (result != NSOrderedAscending) {
+        return  nil;
+    }
+    return model;
 }
 
 @end

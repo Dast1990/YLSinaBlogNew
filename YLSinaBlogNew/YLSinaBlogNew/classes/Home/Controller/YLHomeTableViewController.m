@@ -9,6 +9,10 @@
 #import "YLHomeTableViewController.h"
 #import "YLMessageTableViewController.h"
 #import "YLPullDownView.h"
+#import <AFNetworking.h>
+#import "YLAccountModel.h"
+#import "YLAccountTool.h"
+#import <SVProgressHUD.h>
 
 @interface YLHomeTableViewController ()<YLPullDownViewDelegate>
 
@@ -34,7 +38,32 @@
     self.titleViewByBtn.width = 250;
     self.titleViewByBtn.height = 40;
     [self.titleViewByBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-    [self.titleViewByBtn setTitle:@"首页-文字可变" forState:(UIControlStateNormal)];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    /*access_token	false	string	采用OAuth授权方式为必填参数，其他授权方式不需要此参数，OAuth授权后获得。
+     uid	false	int64	需要查询的用户ID。
+     
+     screen_name	false	string	需要查询的用户昵称。
+     */
+    YLAccountModel *model = [YLAccountTool account];
+    NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
+    dicM[@"access_token"] = model.access_token;
+    dicM[@"uid"] = model.uid;
+    
+    [manager GET:@"https://api.weibo.com/2/users/show.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
+//        YLLOG(@"%@", responseObject);
+        model.name = responseObject[@"name"];
+//        name 存到沙盒
+        [YLAccountTool storeAccount:model];
+        [self.titleViewByBtn setTitle:model.name forState:(UIControlStateNormal)];
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"加载失败"];
+        YLLOG(@"%@", error);
+        [self.titleViewByBtn setTitle:@"首页-文字可变" forState:(UIControlStateNormal)];
+    }];
+    
     [self.titleViewByBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:(UIControlStateSelected)];
     [self.titleViewByBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:(UIControlStateNormal)];
     //  文字距离右边偏移距离为按钮中图片的长度

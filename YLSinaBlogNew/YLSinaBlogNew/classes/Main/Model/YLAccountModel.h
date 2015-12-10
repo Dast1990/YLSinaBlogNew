@@ -20,10 +20,28 @@
 	<string>5062165346</string>
  </dict>
  */
-
+/**
+ *  令牌
+ */
 @property (nonatomic, copy) NSString *access_token;
+/**
+ *  过期时间
+ */
 @property (nonatomic, strong) NSNumber *expires_in;
+/**
+ *  用户id
+ */
 @property (nonatomic, copy) NSString *uid;
+
+/**
+ *  账户授权时间
+ */
+@property (nonatomic, strong) NSDate *timeOfAccountAutho;
+
+/**
+ *  需要查询的用户昵称
+ */
+@property (nonatomic, copy) NSString *name;
 
 + (instancetype)accountModleWithDic:(NSDictionary *)dic;
 

@@ -25,9 +25,9 @@
     
     //    2.设 置根控制器：当前版本号与上次存储的版本号不一致时，显示新特性。
     //    doc中是否有account信息
-    YLAccountTool *account = [YLAccountTool account];
+    YLAccountModel *accountModel = [YLAccountTool account];
     
-    if (account) {
+    if (accountModel) {
         [self.window newFeatureJudgeAndSetRootViewController];
     }else{
         self.window.rootViewController = [[YLOAuthViewController alloc] init];

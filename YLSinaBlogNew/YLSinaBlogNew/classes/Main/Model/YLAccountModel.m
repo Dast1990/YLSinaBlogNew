@@ -12,6 +12,7 @@
 
 - (instancetype)initWithDic:(NSDictionary *)dic{
     if (self = [super init]) {
+        self.timeOfAccountAutho = [NSDate date];
         self.access_token = dic[@"access_token"];
         self.expires_in = dic[@"expires_in"];
         self.uid = dic[@"uid"];
@@ -30,6 +31,9 @@
     [encoder encodeObject: _access_token forKey:@"access_token"];
     [encoder encodeObject: _expires_in forKey:@"expires_in"];
     [encoder encodeObject: _uid forKey:@"uid"];
+    [encoder encodeObject: _timeOfAccountAutho forKey:@"timeOfAccountAutho"];
+    [encoder encodeObject: _name forKey:@"name"];
+    
 }
 
 
@@ -38,6 +42,8 @@
         _access_token = [decoder decodeObjectForKey:@"access_token"];
         _expires_in = [decoder decodeObjectForKey:@"expires_in"];
         _uid = [decoder decodeObjectForKey:@"uid"];
+        _timeOfAccountAutho = [decoder decodeObjectForKey:@"timeOfAccountAutho"];
+        _name = [decoder decodeObjectForKey:@"name"];
     }
     return self;
     
