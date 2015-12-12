@@ -29,6 +29,8 @@
 		C25DD0DE1C11AE2000D4CFCB /* YLMind.c in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0DC1C11AE2000D4CFCB /* YLMind.c */; };
 		C25DD0E01C11AE2700D4CFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */; };
 		C268FE261C13CFBE00E39FCE /* YLNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = C268FE251C13CFBE00E39FCE /* YLNewFeatureController.m */; };
+		C29509ED1C1B32A900FC831F /* YLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C29509EC1C1B32A900FC831F /* YLButton.m */; };
+		C29509F11C1B3CD700FC831F /* NSObject+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C29509F01C1B3CD700FC831F /* NSObject+Log.m */; };
 		C2EC3D671C188E18002CD392 /* YLAccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EC3D661C188E18002CD392 /* YLAccountTool.m */; };
 		C2EC3D6D1C189341002CD392 /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EC3D6C1C189341002CD392 /* UIWindow+Extension.m */; };
 		E2A173776C5773251685FACE /* libPods-YLSinaBlogNew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */; };
@@ -80,6 +82,10 @@
 		C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C268FE241C13CFBE00E39FCE /* YLNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLNewFeatureController.h; sourceTree = "<group>"; };
 		C268FE251C13CFBE00E39FCE /* YLNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLNewFeatureController.m; sourceTree = "<group>"; };
+		C29509EB1C1B32A900FC831F /* YLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLButton.h; sourceTree = "<group>"; };
+		C29509EC1C1B32A900FC831F /* YLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLButton.m; sourceTree = "<group>"; };
+		C29509EF1C1B3CD700FC831F /* NSObject+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Log.h"; sourceTree = "<group>"; };
+		C29509F01C1B3CD700FC831F /* NSObject+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Log.m"; sourceTree = "<group>"; };
 		C2EC3D651C188E18002CD392 /* YLAccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAccountTool.h; sourceTree = "<group>"; };
 		C2EC3D661C188E18002CD392 /* YLAccountTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAccountTool.m; sourceTree = "<group>"; };
 		C2EC3D6B1C189341002CD392 /* UIWindow+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extension.h"; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 				C25DD0931C11AE1200D4CFCB /* UIView+YLExtension.m */,
 				C2EC3D6B1C189341002CD392 /* UIWindow+Extension.h */,
 				C2EC3D6C1C189341002CD392 /* UIWindow+Extension.m */,
+				C29509EE1C1B3CD700FC831F /* log-ext */,
 			);
 			path = Catogories;
 			sourceTree = "<group>";
@@ -229,6 +236,8 @@
 		C25DD09E1C11AE1200D4CFCB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C29509EB1C1B32A900FC831F /* YLButton.h */,
+				C29509EC1C1B32A900FC831F /* YLButton.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -409,6 +418,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		C29509EE1C1B3CD700FC831F /* log-ext */ = {
+			isa = PBXGroup;
+			children = (
+				C29509EF1C1B3CD700FC831F /* NSObject+Log.h */,
+				C29509F01C1B3CD700FC831F /* NSObject+Log.m */,
+			);
+			path = "log-ext";
+			sourceTree = "<group>";
+		};
 		C2EC3D641C188DDA002CD392 /* tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +568,7 @@
 			files = (
 				C25DD0CC1C11AE1200D4CFCB /* YLDiscoverTableViewController.m in Sources */,
 				C2EC3D6D1C189341002CD392 /* UIWindow+Extension.m in Sources */,
+				C29509ED1C1B32A900FC831F /* YLButton.m in Sources */,
 				C25DD0CA1C11AE1200D4CFCB /* UIBarButtonItem+Extension.m in Sources */,
 				C25DD0CB1C11AE1200D4CFCB /* UIView+YLExtension.m in Sources */,
 				C25DD0D31C11AE1200D4CFCB /* YLTest1ViewController.m in Sources */,
@@ -567,6 +586,7 @@
 				C25DD0DE1C11AE2000D4CFCB /* YLMind.c in Sources */,
 				C25DD0DA1C11AE1200D4CFCB /* YLOAuthViewController.m in Sources */,
 				C2168F9B1C1824CF00A11DFC /* YLAccountModel.m in Sources */,
+				C29509F11C1B3CD700FC831F /* NSObject+Log.m in Sources */,
 				C25DD0CF1C11AE1200D4CFCB /* YLMainTabbarController.m in Sources */,
 				C25DD0D81C11AE1200D4CFCB /* YLTabBar.m in Sources */,
 			);
