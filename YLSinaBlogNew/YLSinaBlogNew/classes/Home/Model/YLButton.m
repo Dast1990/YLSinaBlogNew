@@ -30,11 +30,11 @@
  *  如果想在系统设置完控件的尺寸后，再做修改，而且要保证修改成功，一般都是在setFrame:中设置。
  */
 #pragma mark -  本例如果不重写这个方法，会导致界面显示时的bug
-//- (void)setFrame:(CGRect)frame
-//{
-//    frame.size.width += YLMargin;
-//    [super setFrame:frame];
-//}
+- (void)setFrame:(CGRect)frame
+{
+    frame.size.width += YLMargin;
+    [super setFrame:frame];
+}
 
 - (void)layoutSubviews{
     [super layoutSubviews];

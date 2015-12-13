@@ -14,6 +14,7 @@
 #import "YLAccountTool.h"
 #import <SVProgressHUD.h>
 #import "YLButton.h"
+#import <UIImageView+WebCache.h>
 
 @interface YLHomeTableViewController ()<YLPullDownViewDelegate>
 
@@ -97,33 +98,26 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
     dicM[@"access_token"] = self.accountModel.access_token;
-    dicM[@"count"] = @5;
+    NSLog(@"%@",self.accountModel.access_token);
+    //https ://api.weibo.com/2/statuses/public_timeline.json?access_token=2.00K91aWFXloTqC852c6f2d000XVg9C
+    #warning:总是显示19条！why？
+//    默认刷新20条
+//    dicM[@"count"] = @20;
     
     [manager GET:@"https://api.weibo.com/2/statuses/public_timeline.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
-        
-#warning:  怎么办，遍历，把nil替换掉？  可是字典中有数组，遍历层次不止1层。而且即使一层，下面有问题！崩掉了，why？
-        //        NSString *file = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-        //        NSString *filePath = [file stringByAppendingPathComponent:@"sinaBlog.plist"];
-        YLLOG(@"%@", responseObject);
-        //        //       [responseObject enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        //        //           if (nil == [obj objectForKey:key]) {
-        //        //               obj[key] = @"空";
-        //        //           }
-        //        //       }];
-        //        //        写入失败，存在不符合write方法类型的数据导致。
+        //        写入失败， 字典中 存在不符合 write方法类型 的数据导致。
         //        BOOL result =  [responseObject writeToFile:filePath atomically:YES];
-        //        YLLOG(@"re = %d", result);
         
         self.blogStatuses = responseObject[@"statuses"];
         
-#pragma mark -本来没数据，不刷新，怎么显示新数据？
+#pragma mark -本来没数据，不刷新，怎么显示新数据？!
         [self.tableView reloadData];
+        YLLOG(@"%@", responseObject);
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:@"获取微博失败"];
         YLLOG(@"%@", error);
     }];
-    
 }
 
 #pragma mark - 点击titleView按钮，创建下拉视图
@@ -180,9 +174,12 @@
     
     //2.获取模型
     NSDictionary *blog = self.blogStatuses[indexPath.row];
+    NSDictionary *user = blog[@"user"];
     
     //3.为cell赋值
+    cell.textLabel.text = user[@"name"];
     cell.detailTextLabel.text = blog[@"text"];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user[@"profile_image_url"]] placeholderImage:[UIImage imageNamed:@"avatar_default"] options:SDWebImageRetryFailed | SDWebImageLowPriority];
     
     //4.返回cell
     return  cell;

@@ -10,6 +10,7 @@
 #import "YLOAuthViewController.h"
 
 #import "YLAccountTool.h"
+#import <SDWebImageManager.h>
 
 @interface AppDelegate ()
 
@@ -62,14 +63,22 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-@end
-
-
-@implementation NSURLRequest(DataController)
-
-+ (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host
-{
-    return YES;
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
+    SDWebImageManager *mgr = [SDWebImageManager sharedManager];
+//    取消所有任务
+    [mgr cancelAll];
+//    清理内存
+    [mgr.imageCache clearMemory];
 }
+
 @end
+
+
+//@implementation NSURLRequest(DataController)
+//
+//+ (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host
+//{
+//    return YES;
+//}
+//@end
 

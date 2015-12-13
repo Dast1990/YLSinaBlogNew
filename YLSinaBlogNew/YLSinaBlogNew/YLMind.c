@@ -44,8 +44,10 @@ V17.
      1.修正了accountTool类方法参数
      2.对令牌有效期过期时间做了判断，并把用户授权时间存入了沙盒。
      3.在首页导航栏显示了用户名并把用户名增加到了account模型，存到了沙盒。
- V18.自定义button，实现了titleView按钮的文字和图片的自动布局
-    AFN请求最新微博数据  text内容  显示在首页。
+ V18.1.自定义button，实现了titleView按钮的文字和图片的自动布局
+     2.AFN请求最新微博数据  text内容  显示在首页。
+     3.导入 NSObject+Log.m
+ V19.1.导入SDWebImage
  
 
 */
