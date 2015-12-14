@@ -13,7 +13,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    YLLOG(@"%s", __func__);
+//    YLLOG(@"%s", __func__);
     self = [super initWithFrame:frame];
     if (self) {
         [self setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
@@ -38,7 +38,7 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    YLLOG(@"%s", __func__);
+//    YLLOG(@"%s", __func__);
     self.titleLabel.x = self.imageView.x;
     self.imageView.x = CGRectGetMaxX(self.titleLabel.frame) + YLMargin;
 }

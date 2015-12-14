@@ -26,7 +26,7 @@
     NSDate *exprireEndTime = [model.timeOfAccountAutho dateByAddingTimeInterval:expires_in];
     NSDate *timeOfNow = [NSDate date];
     NSComparisonResult result = [timeOfNow compare: exprireEndTime];
-    YLLOG(@"%@, %@", timeOfNow, exprireEndTime);
+//    YLLOG(@"%@, %@", timeOfNow, exprireEndTime);
     
 //    注意条件判断，只有当 timeOfNow 小于 exprireEndTime（升序）时，才返回模型。也就是说 当不为 升序 时，就返回nil
     if (result != NSOrderedAscending) {

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C2168F9B1C1824CF00A11DFC /* YLAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2168F9A1C1824CF00A11DFC /* YLAccountModel.m */; };
+		C2396B111C1EE84100BB8E85 /* YLStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = C2396B101C1EE84100BB8E85 /* YLStatus.m */; };
+		C2396B141C1EE85100BB8E85 /* YLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C2396B131C1EE85100BB8E85 /* YLUser.m */; };
 		C25DD0CA1C11AE1200D4CFCB /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0911C11AE1200D4CFCB /* UIBarButtonItem+Extension.m */; };
 		C25DD0CB1C11AE1200D4CFCB /* UIView+YLExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0931C11AE1200D4CFCB /* UIView+YLExtension.m */; };
 		C25DD0CC1C11AE1200D4CFCB /* YLDiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0971C11AE1200D4CFCB /* YLDiscoverTableViewController.m */; };
@@ -42,6 +44,10 @@
 		3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLSinaBlogNew.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2168F991C1824CF00A11DFC /* YLAccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAccountModel.h; sourceTree = "<group>"; };
 		C2168F9A1C1824CF00A11DFC /* YLAccountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAccountModel.m; sourceTree = "<group>"; };
+		C2396B0F1C1EE84100BB8E85 /* YLStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLStatus.h; sourceTree = "<group>"; };
+		C2396B101C1EE84100BB8E85 /* YLStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLStatus.m; sourceTree = "<group>"; };
+		C2396B121C1EE85100BB8E85 /* YLUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLUser.h; sourceTree = "<group>"; };
+		C2396B131C1EE85100BB8E85 /* YLUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLUser.m; sourceTree = "<group>"; };
 		C25DD0741C11AD6D00D4CFCB /* YLSinaBlogNew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YLSinaBlogNew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C25DD0881C11AD6D00D4CFCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C25DD0901C11AE1200D4CFCB /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
@@ -238,6 +244,10 @@
 			children = (
 				C29509EB1C1B32A900FC831F /* YLButton.h */,
 				C29509EC1C1B32A900FC831F /* YLButton.m */,
+				C2396B0F1C1EE84100BB8E85 /* YLStatus.h */,
+				C2396B101C1EE84100BB8E85 /* YLStatus.m */,
+				C2396B121C1EE85100BB8E85 /* YLUser.h */,
+				C2396B131C1EE85100BB8E85 /* YLUser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -572,6 +582,7 @@
 				C25DD0CA1C11AE1200D4CFCB /* UIBarButtonItem+Extension.m in Sources */,
 				C25DD0CB1C11AE1200D4CFCB /* UIView+YLExtension.m in Sources */,
 				C25DD0D31C11AE1200D4CFCB /* YLTest1ViewController.m in Sources */,
+				C2396B111C1EE84100BB8E85 /* YLStatus.m in Sources */,
 				C25DD0D91C11AE1200D4CFCB /* YLMessageTableViewController.m in Sources */,
 				C25DD0D01C11AE1200D4CFCB /* YLNavigationViewController.m in Sources */,
 				C25DD0DB1C11AE1200D4CFCB /* YLProfileTableViewController.m in Sources */,
@@ -579,6 +590,7 @@
 				C268FE261C13CFBE00E39FCE /* YLNewFeatureController.m in Sources */,
 				C25DD0D51C11AE1200D4CFCB /* YLTest2ViewController.m in Sources */,
 				C25DD0CD1C11AE1200D4CFCB /* YLHomeTableViewController.m in Sources */,
+				C2396B141C1EE85100BB8E85 /* YLUser.m in Sources */,
 				C25DD0D71C11AE1200D4CFCB /* YLSearchBar.m in Sources */,
 				C25DD0CE1C11AE1200D4CFCB /* YLPullDownView.m in Sources */,
 				C25DD0D21C11AE1200D4CFCB /* main.m in Sources */,

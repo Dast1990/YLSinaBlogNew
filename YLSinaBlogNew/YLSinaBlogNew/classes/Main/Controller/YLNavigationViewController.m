@@ -28,7 +28,7 @@
  2015-11-30 10:52:58.727 YLSinaBlog[41443:1943909] -[YLNavigationViewController viewDidLoad]
  */
 + (void)initialize{
-    YLLOG(@"%s", __func__);
+//    YLLOG(@"%s", __func__);
     if (self == [YLNavigationViewController class]){ //如果子类没有实现该方法，那么子类调用这个方法时不满足if条件
         [self setUpAppearance];
     }

@@ -15,12 +15,24 @@
 #import <SVProgressHUD.h>
 #import "YLButton.h"
 #import <UIImageView+WebCache.h>
+#import <MJExtension.h>
+#import "YLStatus.h"
+#import "YLUser.h"
 
 @interface YLHomeTableViewController ()<YLPullDownViewDelegate>
 
+/**
+ *  导航栏标题视图
+ */
 @property (nonatomic, strong) YLButton *titleViewByBtn;
+/**
+ *  账号模型
+ */
 @property (nonatomic, strong) YLAccountModel *accountModel;
-@property (nonatomic, strong) NSArray *blogStatuses;
+/**
+ *  微博模型 数组
+ */
+@property (nonatomic, strong) NSMutableArray *Statuses;
 @end
 
 @implementation YLHomeTableViewController
@@ -46,14 +58,14 @@
     
     [self.titleViewByBtn addTarget:self action:@selector(pullDownViewCreation) forControlEvents:(UIControlEventTouchUpInside)];
     
-#warning 如果不强制布局一次，会出现bug！重写setFrame或在YLButton的initwithframe方法中加句self.imageView也可以？！
+#pragma mark -   如果不强制布局一次，会出现bug！重写setFrame或在YLButton的initwithframe方法中加句self.imageView也可以！
     //    force the layout of subviews before drawing.
     //    [self.titleViewByBtn layoutIfNeeded];
     ////    下轮绘图时才有效。对本例无用
     //    [self.titleViewByBtn setNeedsLayout];
     
     self.navigationItem.titleView = self.titleViewByBtn;
-    YLLOG(@"%@", self.navigationItem.titleView);
+//    YLLOG(@"%@", self.navigationItem.titleView);
 }
 
 - (void)setUpItems{
@@ -107,12 +119,12 @@
     [manager GET:@"https://api.weibo.com/2/statuses/public_timeline.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
         //        写入失败， 字典中 存在不符合 write方法类型 的数据导致。
         //        BOOL result =  [responseObject writeToFile:filePath atomically:YES];
-        
-        self.blogStatuses = responseObject[@"statuses"];
+        #pragma mark - responseObject,后面跟上  [@"statuses"] ，取到的才是  用户模型数组！
+        self.Statuses = [YLStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
 #pragma mark -本来没数据，不刷新，怎么显示新数据？!
         [self.tableView reloadData];
-        YLLOG(@"%@", responseObject);
+//        YLLOG(@"%@", responseObject);
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:@"获取微博失败"];
@@ -160,7 +172,7 @@
 //确定组中一共有几行数据
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return  self.blogStatuses.count;
+    return  self.Statuses.count;
 }
 
 //创建每一行显示的cell
@@ -173,13 +185,13 @@
     }
     
     //2.获取模型
-    NSDictionary *blog = self.blogStatuses[indexPath.row];
-    NSDictionary *user = blog[@"user"];
+    YLStatus *status = self.Statuses[indexPath.row];
+    YLUser *user = status.user;
     
     //3.为cell赋值
-    cell.textLabel.text = user[@"name"];
-    cell.detailTextLabel.text = blog[@"text"];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user[@"profile_image_url"]] placeholderImage:[UIImage imageNamed:@"avatar_default"] options:SDWebImageRetryFailed | SDWebImageLowPriority];
+    cell.textLabel.text = user.name;
+    cell.detailTextLabel.text = status.text;
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageNamed:@"avatar_default"] options:SDWebImageRetryFailed | SDWebImageLowPriority];
     
     //4.返回cell
     return  cell;
@@ -208,6 +220,14 @@
         _accountModel = [YLAccountTool account];
     }
     return  _accountModel;
+}
+
+- (NSArray *)Statuses
+{
+	if (!_Statuses){
+        _Statuses = [NSMutableArray array];
+	}
+	return _Statuses;
 }
 
 
