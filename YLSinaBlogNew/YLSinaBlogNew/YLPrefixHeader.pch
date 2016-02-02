@@ -33,6 +33,9 @@
 #define YLLOG(...)
 #endif
 
+/** 账号相关 */
+#define kAppKey @"4152302715"
+#define kAppSecret @"2b2da33691cbd4f32a578d7263a41247"
 
 //定义UIImage对象
 #define YLIMAGE(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]

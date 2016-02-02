@@ -18,6 +18,7 @@
 #import <MJExtension.h>
 #import "YLStatus.h"
 #import "YLUser.h"
+#import "YLLoadMoreFooterView.h"
 
 @interface YLHomeTableViewController ()<YLPullDownViewDelegate>
 
@@ -25,14 +26,30 @@
  *  导航栏标题视图
  */
 @property (nonatomic, strong) YLButton *titleViewByBtn;
+
 /**
  *  账号模型
  */
 @property (nonatomic, strong) YLAccountModel *accountModel;
+
 /**
  *  微博模型 数组
  */
 @property (nonatomic, strong) NSMutableArray *Statuses;
+
+/**
+ *  下拉刷新控件
+ */
+@property (nonatomic, weak) UIRefreshControl *refreshC;
+
+/**
+ *  微博更新数通知条幅
+ */
+@property (nonatomic, weak) UILabel *noticeLbl;
+
+/** 加载更多视图 */
+@property (nonatomic, strong) YLLoadMoreFooterView *loadMoreFooterView;
+
 @end
 
 @implementation YLHomeTableViewController
@@ -40,21 +57,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    /** 初始化控件 */
     [self setUpUI];
+    
+    /** 获取未读数 */
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5
+                                                      target:self
+                                                    selector:@selector(getUnreadMsges)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    //???:mainRunLoop，与currentrunloop区别
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
+    //!!!:    记忆方法：cs-腾讯Q咦
 }
-
-#pragma mark -  UI
+#pragma mark -  初始化控件
 - (void)setUpUI{
     [self setUpItems];
     [self setUpTitleView];
-    
-    [self getNewBlog];
+    [self pullDownToRefreshBlogs];
+    [self setUpLoadMoreView];
 }
 
+/** 设置导航条 */
+- (void)setUpItems{
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self selector:@selector(leftBtnDidClick) normalImgName:@"navigationbar_friendsearch" highlightedImgName:@"navigationbar_friendsearch_highlighted"];
+    
+    self.navigationItem.rightBarButtonItem =  [UIBarButtonItem itemWithTarget:self selector:@selector(rightBtnDidClick) normalImgName:@"navigationbar_pop" highlightedImgName:@"navigationbar_pop_highlighted"];
+}
+
+/** 设置标题 */
 - (void)setUpTitleView{
     
     [self getUserName];
-    [self.titleViewByBtn setTitle:self.accountModel.name ? self.accountModel.name :@"首页" forState:(UIControlStateNormal)];
+    [self.titleViewByBtn setTitle:self.accountModel.name ? self.accountModel.name
+                                 :@"首页" forState:(UIControlStateNormal)];
     
     [self.titleViewByBtn addTarget:self action:@selector(pullDownViewCreation) forControlEvents:(UIControlEventTouchUpInside)];
     
@@ -65,71 +102,24 @@
     //    [self.titleViewByBtn setNeedsLayout];
     
     self.navigationItem.titleView = self.titleViewByBtn;
-//    YLLOG(@"%@", self.navigationItem.titleView);
+    //    YLLOG(@"%@", self.navigationItem.titleView);
 }
 
-- (void)setUpItems{
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self selector:@selector(leftBtnDidClick) normalImgName:@"navigationbar_friendsearch" highlightedImgName:@"navigationbar_friendsearch_highlighted"];
+/** 下拉刷新 */
+- (void)pullDownToRefreshBlogs{
+    [self.refreshC addTarget:self action:@selector(pullControllAction) forControlEvents:UIControlEventValueChanged];
     
-    self.navigationItem.rightBarButtonItem =  [UIBarButtonItem itemWithTarget:self selector:@selector(rightBtnDidClick) normalImgName:@"navigationbar_pop" highlightedImgName:@"navigationbar_pop_highlighted"];
+    /** 马上进入刷新状态，但是不会触发 ValueChanged 事件，下面自己调 */
+    [self.refreshC beginRefreshing];
+    
+    [self pullControllAction];
+    
 }
 
-#pragma mark -  网络
-- (void)getUserName{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    /*access_token	false	string	采用OAuth授权方式为必填参数，其他授权方式不需要此参数，OAuth授权后获得。
-     uid	false	int64	需要查询的用户ID。
-     
-     screen_name	false	string	需要查询的用户昵称。
-     */
-    NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
-    dicM[@"access_token"] = self.accountModel.access_token;
-    dicM[@"uid"] = self.accountModel.uid;
-    
-    [manager GET:@"https://api.weibo.com/2/users/show.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
-        self.accountModel.name = responseObject[@"name"];
-        //        name 存到沙盒
-        [YLAccountTool storeAccount:self.accountModel];
-        
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        [SVProgressHUD showErrorWithStatus:@"获取用户名失败"];
-        YLLOG(@"%@", error);
-    }];
-}
-
-- (void)getNewBlog{
-    /*
-     必选	类型及范围	说明
-     source	false	string	采用OAuth授权方式不需要此参数，其他授权方式为必填参数，数值为应用的AppKey。
-     access_token	false	string	采用OAuth授权方式为必填参数，其他授权方式不需要此参数，OAuth授权后获得。
-     count	false	int	单页返回的记录条数，默认为50。
-     page	false	int	返回结果的页码，默认为1。
-     base_app	false	int	是否只获取当前应用的数据。0为否（所有数据），1为是（仅当前应用），默认为0。
-     */
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
-    dicM[@"access_token"] = self.accountModel.access_token;
-    NSLog(@"%@",self.accountModel.access_token);
-    //https ://api.weibo.com/2/statuses/public_timeline.json?access_token=2.00K91aWFXloTqC852c6f2d000XVg9C
-    #warning:总是显示19条！why？
-//    默认刷新20条
-//    dicM[@"count"] = @20;
-    
-    [manager GET:@"https://api.weibo.com/2/statuses/public_timeline.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
-        //        写入失败， 字典中 存在不符合 write方法类型 的数据导致。
-        //        BOOL result =  [responseObject writeToFile:filePath atomically:YES];
-        #pragma mark - responseObject,后面跟上  [@"statuses"] ，取到的才是  用户模型数组！
-        self.Statuses = [YLStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-        
-#pragma mark -本来没数据，不刷新，怎么显示新数据？!
-        [self.tableView reloadData];
-//        YLLOG(@"%@", responseObject);
-        
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        [SVProgressHUD showErrorWithStatus:@"获取微博失败"];
-        YLLOG(@"%@", error);
-    }];
+/** 上拉加载更多 */
+- (void)setUpLoadMoreView{
+    self.loadMoreFooterView.hidden = YES;
+    self.tableView.tableFooterView = self.loadMoreFooterView;
 }
 
 #pragma mark - 点击titleView按钮，创建下拉视图
@@ -152,17 +142,193 @@
     [menu showFrom:self.navigationItem.titleView];
 }
 
-#pragma mark -  代理方法
+#pragma mark -  网络
+/** 获取未读数 */
+- (void)getUnreadMsges{
+    NSLog(@"%s",__func__);
+    /**=============== setp 1: 请求管理者 ===============*/
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    
+    /**=============== setp 2: 配置参数 ===============*/
+    YLAccountModel *account = [YLAccountTool account];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"uid"] = account.uid;
+    params[@"access_token"] = account.access_token;
+    
+    /**=============== setp 3:  发送网络请求 ===============*/
+    [mgr GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:params  success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *status = [responseObject[@"status"] description];
+        if ([status isEqualToString:@"0"]) {
+            self.tabBarItem.badgeValue = nil;
+            [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        } else {
+            self.tabBarItem.badgeValue = status;
+            //???: app上并没显示
+            [UIApplication sharedApplication].applicationIconBadgeNumber = status.intValue;
+        }
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        YLLOG(@"请求失败：%@",error);
+    }];
+}
+
+- (void)pullUpToLoadMoreBlogs{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
+    //     since_id	false	int64	若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0。
+    //     max_id	false	int64	若指定此参数，则返回ID小于或等于max_id的微博，默认为0。
+    dicM[@"access_token"] = self.accountModel.access_token;
+    if (self.Statuses.lastObject) {
+        NSString *idTemp     = [self.Statuses.lastObject idstr];
+        YLLOG(@"idTemp = %@",idTemp);
+        
+        //!!!: idTemp = 3938091960576445   idTempSub1 = 3938091960576444，服务器返回的数字一般很大，用longlongValue转，intValue范围太小，会出错。
+        NSNumber *idTempSub1 = @(idTemp.longLongValue - 1);//-1，为了不再获得当前最后一条微博。
+        dicM[@"max_id"]      = idTempSub1;
+        YLLOG(@"idTempSub1 = %@",idTempSub1);
+    }
+    
+    [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
+#pragma mark - responseObject,后面跟上  [@"statuses"] ，取到的才是  用户模型数组！
+        NSMutableArray *newStatuses  = [YLStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        //        NSRange range = NSMakeRange(0, newStatuses.count);
+        //        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        [self.Statuses addObjectsFromArray:newStatuses];
+        
+        [self.tableView reloadData];
+        self.loadMoreFooterView.loading = NO;//!!!: 必须在本次数据请求结束后设置为no，否则再次上拉刷新无效。
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"获取微博失败,请检查网络连接"];
+        [self.refreshC endRefreshing];
+        //        [self showResultWithNumberOfRefreshedBlogs:0];
+        self.loadMoreFooterView.loading = NO;//!!!: 必须在本次数据请求结束后设置为no，否则再次上拉刷新无效。
+        YLLOG(@"%@", error);
+    }];
+    
+    YLLOG(@"hahaha");
+}
+
+- (void)pullControllAction{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
+    //     since_id	false	int64	若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0。
+    //     max_id	false	int64	若指定此参数，则返回ID小于或等于max_id的微博，默认为0。
+    dicM[@"access_token"] = self.accountModel.access_token;
+    if (self.Statuses.firstObject) {
+        dicM[@"since_id"]     = [self.Statuses.firstObject idstr];
+    }
+    
+    [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
+#pragma mark - responseObject,后面跟上  [@"statuses"] ，取到的才是  用户模型数组！
+        NSMutableArray *newStatuses  = [YLStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        NSRange range = NSMakeRange(0, newStatuses.count);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        [self.Statuses insertObjects:newStatuses atIndexes:indexSet];
+        
+        [self.tableView reloadData];
+        [self.refreshC endRefreshing];
+        [self showResultWithNumberOfRefreshedBlogs:newStatuses.count];
+        
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"获取微博失败"];
+        [self.refreshC endRefreshing];
+//        [self showResultWithNumberOfRefreshedBlogs:0];
+        YLLOG(@"%@", error);
+    }];
+}
+
+- (void)showResultWithNumberOfRefreshedBlogs:(NSUInteger)numberOfRefreshedBlogs {
+    /** 刷新成功，清空图标数字 */
+    self.tabBarItem.badgeValue = nil;
+    
+    self.noticeLbl.text = numberOfRefreshedBlogs == 0
+    ? @"没有新微博。"
+    : [NSString stringWithFormat:@"%zd条新微博。", numberOfRefreshedBlogs]; ;
+    
+    [UIView animateWithDuration:0.5  delay:0.5 options:UIViewAnimationOptionCurveEaseInOut  animations:^{
+        self.noticeLbl.height = self.navigationController.navigationBar.height;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 delay:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.noticeLbl.height = 0;
+        } completion:^(BOOL finished){
+            [self.noticeLbl removeFromSuperview];
+        }];
+    }];
+}
+
+- (void)getUserName{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    /*access_token	false	string	采用OAuth授权方式为必填参数，其他授权方式不需要此参数，OAuth授权后获得。
+     uid	false	int64	需要查询的用户ID。
+     */
+    NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
+    dicM[@"access_token"] = self.accountModel.access_token;
+    dicM[@"uid"] = self.accountModel.uid;
+    
+    [manager GET:@"https://api.weibo.com/2/users/show.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
+        self.accountModel.name = responseObject[@"name"];
+        //        name 存到沙盒
+        [YLAccountTool storeAccount:self.accountModel];
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"获取用户名失败"];
+        YLLOG(@"%@", error);
+    }];
+}
+
+#pragma mark -  自定义下拉视图 代理方法
 - (void)pulldownMenuDidDismiss:(YLPullDownView *)menu{
     self.titleViewByBtn.selected = NO;
 }
 
 - (void)pulldownMenuDidShow:(YLPullDownView *)menu{
-    self.titleViewByBtn.selected = YES;
+    self.titleViewByBtn.selected = YES; 
+}
+
+#pragma mark -  scrollView代理方法
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    CGFloat contentOffsetY = scrollView.contentOffset.y;
+    
+    //!!!: tabbar会缩小scrollview的高度（高度比618大时),scrollView.frame == {0, 0}, {375, 618},(667- 618 = 49)
+    CGFloat differ = scrollView.contentSize.height - scrollView.height;
+    
+    //    /** {{0, 0}, {375, 618}}:667- 618 = 49,tabbar的高度。
+    //     可见：tabbar会缩小scrollview的高度（高度比618大时）；导航栏会且只会影响scrollview的offset属性 */
+    //    YLLOG(@"%@", NSStringFromCGRect(self.tableView.frame));
+    //    YLLOG(@"%@", NSStringFromCGRect(scrollView.frame));
+    //    
+    //    /** 20*44 + 44 = 924 */
+    //    YLLOG(@"scrollView.contentSize.height = %f", (scrollView.contentSize.height));
+    //    
+    //    /** 有导航栏时，默认是 -64，自动向下偏移了 */
+    YLLOG(@"scrollView.contentOffset.y = %f", scrollView.contentOffset.y);
+    //
+    //    YLLOG(@"self.tabBarController.tabBar.height = %f", self.tabBarController.tabBar.height);// 49
+    YLLOG(@"differ = %f", differ);// 306
+    
+    /** 当没有数据显示(此时scrollView.contentSize.height = footerView高度 < scrollView.height)，return； */
+    if (differ < 0) {
+        return;
+    }
+    
+    /** 当最后一个cell显示在视野中时，设置加载更多视图可见，加载更多数据(此处看需求，本例按下面需求实现)。 */
+    if (contentOffsetY > differ - 44) {// differ 应该减去 加载更多视图 的高度
+        self.tableView.tableFooterView.hidden = NO;
+    }
+    
+    /** 当上拉到 加载更多视图 偏离tabbar 44距离时，就加载更多。 */
+    if (contentOffsetY > differ + 44 && !self.loadMoreFooterView.isLoading) {
+        YLLOG(@"load more");
+        [self pullUpToLoadMoreBlogs];
+        self.loadMoreFooterView.loading = YES;
+    }
 }
 
 
-#pragma mark -数据源3方法
+#pragma mark -tableView数据源3方法
 //确定组的数量，如果不实现默认为1组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -224,10 +390,53 @@
 
 - (NSArray *)Statuses
 {
-	if (!_Statuses){
+    if (!_Statuses){
         _Statuses = [NSMutableArray array];
-	}
-	return _Statuses;
+    }
+    return _Statuses;
+}
+
+- (UIRefreshControl *)refreshC
+{
+    if (!_refreshC){
+        UIRefreshControl *refreshC = [[UIRefreshControl alloc] init];
+        [self.tableView addSubview:refreshC];
+        _refreshC = refreshC;
+    }
+    return _refreshC;
+}
+
+- (UILabel *)noticeLbl
+{
+    if (!_noticeLbl){
+        UILabel *noticeLbl = [[UILabel alloc] init];
+        noticeLbl.backgroundColor = [UIColor yellowColor];
+        noticeLbl.textAlignment = NSTextAlignmentCenter;
+        CGFloat x = 0;
+        CGFloat width = YLSCREEN_WIDTH;
+        CGFloat height = 0;
+        
+        CGFloat y = self.navigationController.navigationBar.height + 20;
+        
+        noticeLbl.frame = CGRectMake(x , y, width, height);
+        
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        [window addSubview:noticeLbl];
+        //        [self.navigationController.view insertSubview:noticeLbl belowSubview:self.navigationController.navigationBar];
+        
+        _noticeLbl = noticeLbl;
+    }
+    return _noticeLbl;
+}
+
+
+- (YLLoadMoreFooterView *)loadMoreFooterView
+{
+    if (!_loadMoreFooterView){
+        _loadMoreFooterView = [YLLoadMoreFooterView footerView];
+        _loadMoreFooterView.width = self.view.width;
+    }
+    return _loadMoreFooterView;
 }
 
 

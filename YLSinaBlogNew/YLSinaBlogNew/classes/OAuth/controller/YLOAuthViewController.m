@@ -13,6 +13,8 @@
 #import "YLAccountModel.h"
 #import "YLAccountTool.h"
 
+
+
 @interface YLOAuthViewController ()<UIWebViewDelegate>
 @property (nonatomic, weak) UIWebView *webView;
 
@@ -32,12 +34,13 @@
     self.webView = webView;
     
     [self webViewOperation];
-
+    
 }
 
 
 - (void)webViewOperation{
-    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=2607741795&redirect_uri=http://www.baidu.com/"];
+    NSString *str = [NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&redirect_uri=http://www.baidu.com/",kAppKey];
+    NSURL *url = [NSURL URLWithString:str];
     
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     
@@ -51,7 +54,7 @@
     YLLOG(@"%@", request);
     [SVProgressHUD showWithStatus:@"将要开始加载网络请求"];
     
-#warning 注意：要熟练
+    //!!!: 要熟练
     //    1.获得url字符串
     NSString *urlString = request.URL.absoluteString;
     //    2.判断是否为回调地址（看是否包含 code=，后面跟的就是code数字）
@@ -84,8 +87,8 @@
     
     //    是字典，不是数组！
     NSMutableDictionary *dicM = [NSMutableDictionary dictionary];;
-    dicM[@"client_id"] = @"2607741795";
-    dicM[@"client_secret"] = @"3f6587eeeda669d2b1375c8285ecb75d";
+    dicM[@"client_id"] =kAppKey;
+    dicM[@"client_secret"] = kAppSecret;
     dicM[@"grant_type"] = @"authorization_code";
     dicM[@"code"] = code;
     dicM[@"redirect_uri"] = @"http://www.baidu.com/";
@@ -93,7 +96,7 @@
     //  AFN请求token,下面用 AFHTTPRequestOperationManager创建管理器，实现对应POST方法，修改底层接收格式。也行！
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager]; 
     //    sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
-    #pragma mark -  最好在代码里写，需要新加提示的格式，如果改afn底层，别人按pod去更新时，别人afn的底层可是没改过的！
+#pragma mark -  最好在代码里写，需要新加提示的格式，如果改afn底层，别人按pod去更新时，别人afn的底层可是没改过的！
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", nil];
     
     [sessionManager POST:@"https://api.weibo.com/oauth2/access_token" parameters:dicM success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {//可以改系统的参数名（提高可读性）或参数类型（的确是某个类型时）
@@ -117,18 +120,18 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     YLLOG(@"%s", __func__);
-//    [SVProgressHUD showSuccessWithStatus:@"加载完成！"];
+    //    [SVProgressHUD showSuccessWithStatus:@"加载完成！"];
     [SVProgressHUD showImage:[UIImage imageNamed:@"compose_camerabutton_background_highlighted_os7"] status:@"加载完成-可以自定义图片啊！"];
-//下面这句并没有效果！
+    //下面这句并没有效果！
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
-//    下面不用设置，默认有延迟消失时长
+    //    下面不用设置，默认有延迟消失时长
     [SVProgressHUD dismissWithDelay:10];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     YLLOG(@"%s", __func__);
     [SVProgressHUD showErrorWithStatus:@"加载失败"];
-//    设置失败提示框  延迟消失时间
+    //    设置失败提示框  延迟消失时间
     [SVProgressHUD dismissWithDelay:2];
 }
 

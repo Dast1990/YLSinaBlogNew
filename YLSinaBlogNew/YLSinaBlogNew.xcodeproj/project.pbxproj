@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C20A8A8D1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20A8A8C1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.m */; };
+		C20A8A8F1C3FB69300E1A7C5 /* YLLoadMoreFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A8A8E1C3FB69300E1A7C5 /* YLLoadMoreFooterView.xib */; };
 		C2168F9B1C1824CF00A11DFC /* YLAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2168F9A1C1824CF00A11DFC /* YLAccountModel.m */; };
 		C2396B111C1EE84100BB8E85 /* YLStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = C2396B101C1EE84100BB8E85 /* YLStatus.m */; };
 		C2396B141C1EE85100BB8E85 /* YLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C2396B131C1EE85100BB8E85 /* YLUser.m */; };
@@ -42,6 +44,9 @@
 		197754D493CEFCFDD732EEB1 /* Pods-YLSinaBlogNew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLSinaBlogNew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLSinaBlogNew/Pods-YLSinaBlogNew.debug.xcconfig"; sourceTree = "<group>"; };
 		19D6CFA3D62E24A8DE714C95 /* Pods-YLSinaBlogNew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLSinaBlogNew.release.xcconfig"; path = "Pods/Target Support Files/Pods-YLSinaBlogNew/Pods-YLSinaBlogNew.release.xcconfig"; sourceTree = "<group>"; };
 		3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLSinaBlogNew.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C20A8A8B1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLoadMoreFooterView.h; sourceTree = "<group>"; };
+		C20A8A8C1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLoadMoreFooterView.m; sourceTree = "<group>"; };
+		C20A8A8E1C3FB69300E1A7C5 /* YLLoadMoreFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YLLoadMoreFooterView.xib; sourceTree = "<group>"; };
 		C2168F991C1824CF00A11DFC /* YLAccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAccountModel.h; sourceTree = "<group>"; };
 		C2168F9A1C1824CF00A11DFC /* YLAccountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAccountModel.m; sourceTree = "<group>"; };
 		C2396B0F1C1EE84100BB8E85 /* YLStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLStatus.h; sourceTree = "<group>"; };
@@ -84,7 +89,7 @@
 		C25DD0C61C11AE1200D4CFCB /* YLProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProfileTableViewController.h; sourceTree = "<group>"; };
 		C25DD0C71C11AE1200D4CFCB /* YLProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProfileTableViewController.m; sourceTree = "<group>"; };
 		C25DD0DC1C11AE2000D4CFCB /* YLMind.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = YLMind.c; sourceTree = "<group>"; };
-		C25DD0DD1C11AE2000D4CFCB /* YLPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLPrefixHeader.pch; sourceTree = "<group>"; };
+		C25DD0DD1C11AE2000D4CFCB /* YLPrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YLPrefixHeader.pch; path = ../../YLPrefixHeader.pch; sourceTree = "<group>"; };
 		C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C268FE241C13CFBE00E39FCE /* YLNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLNewFeatureController.h; sourceTree = "<group>"; };
 		C268FE251C13CFBE00E39FCE /* YLNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLNewFeatureController.m; sourceTree = "<group>"; };
@@ -151,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				C25DD0DF1C11AE2700D4CFCB /* Assets.xcassets */,
-				C25DD0DD1C11AE2000D4CFCB /* YLPrefixHeader.pch */,
 				C25DD0881C11AD6D00D4CFCB /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -176,6 +180,7 @@
 		C25DD08F1C11AE1200D4CFCB /* Catogories */ = {
 			isa = PBXGroup;
 			children = (
+				C25DD0DD1C11AE2000D4CFCB /* YLPrefixHeader.pch */,
 				C25DD0901C11AE1200D4CFCB /* UIBarButtonItem+Extension.h */,
 				C25DD0911C11AE1200D4CFCB /* UIBarButtonItem+Extension.m */,
 				C25DD0921C11AE1200D4CFCB /* UIView+YLExtension.h */,
@@ -257,6 +262,9 @@
 			children = (
 				C25DD0A01C11AE1200D4CFCB /* YLPullDownView.h */,
 				C25DD0A11C11AE1200D4CFCB /* YLPullDownView.m */,
+				C20A8A8B1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.h */,
+				C20A8A8C1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.m */,
+				C20A8A8E1C3FB69300E1A7C5 /* YLLoadMoreFooterView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -483,6 +491,7 @@
 		C25DD06C1C11AD6D00D4CFCB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = YL;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = LongMa;
 				TargetAttributes = {
@@ -518,6 +527,7 @@
 				C25DD0D61C11AE1200D4CFCB /* YLTest2ViewController.xib in Resources */,
 				C25DD0E01C11AE2700D4CFCB /* Assets.xcassets in Resources */,
 				C25DD0D41C11AE1200D4CFCB /* YLTest1ViewController.xib in Resources */,
+				C20A8A8F1C3FB69300E1A7C5 /* YLLoadMoreFooterView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +611,7 @@
 				C29509F11C1B3CD700FC831F /* NSObject+Log.m in Sources */,
 				C25DD0CF1C11AE1200D4CFCB /* YLMainTabbarController.m in Sources */,
 				C25DD0D81C11AE1200D4CFCB /* YLTabBar.m in Sources */,
+				C20A8A8D1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

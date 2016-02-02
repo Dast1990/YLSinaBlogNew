@@ -13,12 +13,12 @@
 /**
  *  字符串型用户id
  */
-@property (nonatomic, copy) NSString *idstr;
+@property (nonatomic, copy) NSString  *idstr;
 
 /**
  *  用户名
  */
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString  *name;
 
 /**
  *  用户头像

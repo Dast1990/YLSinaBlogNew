@@ -13,7 +13,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-//    YLLOG(@"%s", __func__);
+    //    YLLOG(@"%s", __func__);
     self = [super initWithFrame:frame];
     if (self) {
         [self setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
@@ -29,7 +29,7 @@
  *  重写setFrame:方法的目的：拦截设置按钮尺寸的过程
  *  如果想在系统设置完控件的尺寸后，再做修改，而且要保证修改成功，一般都是在setFrame:中设置。
  */
-#pragma mark -  本例如果不重写这个方法，会导致界面显示时的bug
+//!!!: 本例如果不重写这个方法，会导致界面显示时 右边图标超出按钮 的bug。不能在layoutSubviews 中改 self.width，会死循环
 - (void)setFrame:(CGRect)frame
 {
     frame.size.width += YLMargin;
@@ -38,7 +38,7 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-//    YLLOG(@"%s", __func__);
+    //    YLLOG(@"%s", __func__);
     self.titleLabel.x = self.imageView.x;
     self.imageView.x = CGRectGetMaxX(self.titleLabel.frame) + YLMargin;
 }
