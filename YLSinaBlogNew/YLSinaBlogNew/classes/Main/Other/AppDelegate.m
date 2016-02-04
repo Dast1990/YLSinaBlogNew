@@ -37,6 +37,12 @@
     //    3 显
     [self.window makeKeyAndVisible];
     
+    /** 注册（register）iconBadgeNumber权限 */
+    if ([UIDevice currentDevice].systemVersion.doubleValue >= 8.0) {
+        UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+        [application registerUserNotificationSettings:setting];
+    }
+    
     return YES;
 }
 
@@ -57,7 +63,8 @@
      *  4.后台运行状态
      */
     // 向操作系统申请后台运行的资格，能维持多久，是不确定的 */
-    UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
+    //???: __block,why
+    __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{
         [application endBackgroundTask:bgTask];
     }];
     

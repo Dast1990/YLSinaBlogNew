@@ -28,7 +28,8 @@
 #endif
 
 #ifdef DEBUG
-#define YLLOG(...) NSLog(__VA_ARGS__)
+//#define YLLOG(...) NSLog(__VA_ARGS__)
+#define  YLLOG(...) NSLog(@"%s %d \n %@ \n\n",__func__,__LINE__, [NSString stringWithFormat:__VA_ARGS__]);
 #else
 #define YLLOG(...)
 #endif

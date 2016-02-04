@@ -35,6 +35,8 @@
 		C268FE261C13CFBE00E39FCE /* YLNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = C268FE251C13CFBE00E39FCE /* YLNewFeatureController.m */; };
 		C29509ED1C1B32A900FC831F /* YLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C29509EC1C1B32A900FC831F /* YLButton.m */; };
 		C29509F11C1B3CD700FC831F /* NSObject+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C29509F01C1B3CD700FC831F /* NSObject+Log.m */; };
+		C29D96E21C633F480074E5DE /* YLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D96E01C633F480074E5DE /* YLTableViewCell.m */; };
+		C29D96E31C633F480074E5DE /* YLTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29D96E11C633F480074E5DE /* YLTableViewCell.xib */; };
 		C2EC3D671C188E18002CD392 /* YLAccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EC3D661C188E18002CD392 /* YLAccountTool.m */; };
 		C2EC3D6D1C189341002CD392 /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EC3D6C1C189341002CD392 /* UIWindow+Extension.m */; };
 		E2A173776C5773251685FACE /* libPods-YLSinaBlogNew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */; };
@@ -97,6 +99,9 @@
 		C29509EC1C1B32A900FC831F /* YLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLButton.m; sourceTree = "<group>"; };
 		C29509EF1C1B3CD700FC831F /* NSObject+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Log.h"; sourceTree = "<group>"; };
 		C29509F01C1B3CD700FC831F /* NSObject+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Log.m"; sourceTree = "<group>"; };
+		C29D96DF1C633F480074E5DE /* YLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTableViewCell.h; sourceTree = "<group>"; };
+		C29D96E01C633F480074E5DE /* YLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTableViewCell.m; sourceTree = "<group>"; };
+		C29D96E11C633F480074E5DE /* YLTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YLTableViewCell.xib; sourceTree = "<group>"; };
 		C2EC3D651C188E18002CD392 /* YLAccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAccountTool.h; sourceTree = "<group>"; };
 		C2EC3D661C188E18002CD392 /* YLAccountTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAccountTool.m; sourceTree = "<group>"; };
 		C2EC3D6B1C189341002CD392 /* UIWindow+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extension.h"; sourceTree = "<group>"; };
@@ -265,6 +270,9 @@
 				C20A8A8B1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.h */,
 				C20A8A8C1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.m */,
 				C20A8A8E1C3FB69300E1A7C5 /* YLLoadMoreFooterView.xib */,
+				C29D96DF1C633F480074E5DE /* YLTableViewCell.h */,
+				C29D96E01C633F480074E5DE /* YLTableViewCell.m */,
+				C29D96E11C633F480074E5DE /* YLTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -524,6 +532,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C29D96E31C633F480074E5DE /* YLTableViewCell.xib in Resources */,
 				C25DD0D61C11AE1200D4CFCB /* YLTest2ViewController.xib in Resources */,
 				C25DD0E01C11AE2700D4CFCB /* Assets.xcassets in Resources */,
 				C25DD0D41C11AE1200D4CFCB /* YLTest1ViewController.xib in Resources */,
@@ -593,6 +602,7 @@
 				C25DD0CB1C11AE1200D4CFCB /* UIView+YLExtension.m in Sources */,
 				C25DD0D31C11AE1200D4CFCB /* YLTest1ViewController.m in Sources */,
 				C2396B111C1EE84100BB8E85 /* YLStatus.m in Sources */,
+				C29D96E21C633F480074E5DE /* YLTableViewCell.m in Sources */,
 				C25DD0D91C11AE1200D4CFCB /* YLMessageTableViewController.m in Sources */,
 				C25DD0D01C11AE1200D4CFCB /* YLNavigationViewController.m in Sources */,
 				C25DD0DB1C11AE1200D4CFCB /* YLProfileTableViewController.m in Sources */,

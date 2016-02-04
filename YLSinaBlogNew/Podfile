@@ -10,6 +10,7 @@ pod 'AFNetworking', '~> 2.6.3'
 pod 'SVProgressHUD', '~> 2.0-beta'
 pod 'SDWebImage', '~> 3.7.3'
 pod 'MJExtension', '~> 3.0.7'
+pod 'UITableView+FDTemplateLayoutCell', '~> 1.4'
 
 
 end

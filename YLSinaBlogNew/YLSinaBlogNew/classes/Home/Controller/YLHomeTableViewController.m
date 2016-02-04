@@ -20,6 +20,12 @@
 #import "YLUser.h"
 #import "YLLoadMoreFooterView.h"
 
+#import <Masonry.h>
+#import <UITableView+FDTemplateLayoutCell.h>
+#import "YLTableViewCell.h"
+#define kHomeVCellReuseID @"homeVCell"
+
+
 @interface YLHomeTableViewController ()<YLPullDownViewDelegate>
 
 /**
@@ -70,6 +76,12 @@
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
     //!!!:    记忆方法：cs-腾讯Q咦
+    
+    /** 注册cell */
+    [self.tableView registerNib:[UINib nibWithNibName:@"YLTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kHomeVCellReuseID];
+    
+    /** 预估行高，在使用fd框架时，也要写，同样会减少行高计算次数！ */
+    self.tableView.estimatedRowHeight = 200;
 }
 #pragma mark -  初始化控件
 - (void)setUpUI{
@@ -95,7 +107,7 @@
     
     [self.titleViewByBtn addTarget:self action:@selector(pullDownViewCreation) forControlEvents:(UIControlEventTouchUpInside)];
     
-#pragma mark -   如果不强制布局一次，会出现bug！重写setFrame或在YLButton的initwithframe方法中加句self.imageView也可以！
+    //!!!:   如果不强制布局一次，会出现bug！重写setFrame或在YLButton的initwithframe方法中加句self.imageView也可以！
     //    force the layout of subviews before drawing.
     //    [self.titleViewByBtn layoutIfNeeded];
     ////    下轮绘图时才有效。对本例无用
@@ -113,7 +125,6 @@
     [self.refreshC beginRefreshing];
     
     [self pullControllAction];
-    
 }
 
 /** 上拉加载更多 */
@@ -233,7 +244,7 @@
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:@"获取微博失败"];
         [self.refreshC endRefreshing];
-//        [self showResultWithNumberOfRefreshedBlogs:0];
+        //        [self showResultWithNumberOfRefreshedBlogs:0];
         YLLOG(@"%@", error);
     }];
 }
@@ -314,8 +325,8 @@
         return;
     }
     
-    /** 当最后一个cell显示在视野中时，设置加载更多视图可见，加载更多数据(此处看需求，本例按下面需求实现)。 */
-    if (contentOffsetY > differ - 44) {// differ 应该减去 加载更多视图 的高度
+    /** 当微博数组有值时，设置加载更多视图可见 */
+    if (self.Statuses.count > 0) {// differ 应该减去 加载更多视图 的高度
         self.tableView.tableFooterView.hidden = NO;
     }
     
@@ -328,7 +339,7 @@
 }
 
 
-#pragma mark -tableView数据源3方法
+#pragma mark tableView数据源3方法
 //确定组的数量，如果不实现默认为1组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -345,22 +356,36 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //1.创建cell
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"cell"];
-    }
+    /*
+          dequeueReusableCellWithIdentifier:  forIndexPath: iOS6.0推出，为了方便程序员直接从sb中创建cell
+          > 根据指定标示符去缓存池中找cell
+              > 如果没有找到，则会查看是否已经注册了一个cell,如果没有注册cell,
+                     >则根据标示符去sb里面找对应写了相同重用标记的cell，如果没有找到，直接崩溃。
+     */
+    YLTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kHomeVCellReuseID forIndexPath:indexPath];
     
     //2.获取模型
     YLStatus *status = self.Statuses[indexPath.row];
-    YLUser *user = status.user;
     
     //3.为cell赋值
-    cell.textLabel.text = user.name;
-    cell.detailTextLabel.text = status.text;
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageNamed:@"avatar_default"] options:SDWebImageRetryFailed | SDWebImageLowPriority];
+    cell.status = status;
     
     //4.返回cell
     return  cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [tableView fd_heightForCellWithIdentifier:kHomeVCellReuseID cacheByIndexPath:indexPath configuration:^(YLTableViewCell* cell) {
+        
+        //!!!: 直接配置cell，别dequeue，会崩溃。
+        //        cell = [tableView dequeueReusableCellWithIdentifier:kHomeVCellReuseID forIndexPath:indexPath];
+        
+        //2.获取模型
+        YLStatus *status = self.Statuses[indexPath.row];
+        
+        //3.为cell赋值
+        cell.status = status;
+    }];
 }
 
 #pragma mark -  事件
