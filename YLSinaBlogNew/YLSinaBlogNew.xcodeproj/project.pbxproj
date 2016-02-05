@@ -37,6 +37,7 @@
 		C29509F11C1B3CD700FC831F /* NSObject+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = C29509F01C1B3CD700FC831F /* NSObject+Log.m */; };
 		C29D96E21C633F480074E5DE /* YLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D96E01C633F480074E5DE /* YLTableViewCell.m */; };
 		C29D96E31C633F480074E5DE /* YLTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29D96E11C633F480074E5DE /* YLTableViewCell.xib */; };
+		C29D96E81C643D160074E5DE /* YLHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D96E71C643D160074E5DE /* YLHttpTool.m */; };
 		C2EC3D671C188E18002CD392 /* YLAccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EC3D661C188E18002CD392 /* YLAccountTool.m */; };
 		C2EC3D6D1C189341002CD392 /* UIWindow+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EC3D6C1C189341002CD392 /* UIWindow+Extension.m */; };
 		E2A173776C5773251685FACE /* libPods-YLSinaBlogNew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1C09BA671AEE2B931DC96E /* libPods-YLSinaBlogNew.a */; };
@@ -102,6 +103,8 @@
 		C29D96DF1C633F480074E5DE /* YLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLTableViewCell.h; sourceTree = "<group>"; };
 		C29D96E01C633F480074E5DE /* YLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLTableViewCell.m; sourceTree = "<group>"; };
 		C29D96E11C633F480074E5DE /* YLTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YLTableViewCell.xib; sourceTree = "<group>"; };
+		C29D96E61C643D160074E5DE /* YLHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLHttpTool.h; sourceTree = "<group>"; };
+		C29D96E71C643D160074E5DE /* YLHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLHttpTool.m; sourceTree = "<group>"; };
 		C2EC3D651C188E18002CD392 /* YLAccountTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAccountTool.h; sourceTree = "<group>"; };
 		C2EC3D661C188E18002CD392 /* YLAccountTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAccountTool.m; sourceTree = "<group>"; };
 		C2EC3D6B1C189341002CD392 /* UIWindow+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extension.h"; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 		C25DD08E1C11AE1200D4CFCB /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				C29D96E41C643CF10074E5DE /* tools */,
 				C25DD0A91C11AE1200D4CFCB /* Other */,
 				C268FE1F1C13CCD400E39FCE /* NewFeature */,
 				C25DD0BF1C11AE1200D4CFCB /* OAuth */,
@@ -453,6 +457,23 @@
 			path = "log-ext";
 			sourceTree = "<group>";
 		};
+		C29D96E41C643CF10074E5DE /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				C29D96E51C643CF10074E5DE /* httpTool */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		C29D96E51C643CF10074E5DE /* httpTool */ = {
+			isa = PBXGroup;
+			children = (
+				C29D96E61C643D160074E5DE /* YLHttpTool.h */,
+				C29D96E71C643D160074E5DE /* YLHttpTool.m */,
+			);
+			path = httpTool;
+			sourceTree = "<group>";
+		};
 		C2EC3D641C188DDA002CD392 /* tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,6 +626,7 @@
 				C29D96E21C633F480074E5DE /* YLTableViewCell.m in Sources */,
 				C25DD0D91C11AE1200D4CFCB /* YLMessageTableViewController.m in Sources */,
 				C25DD0D01C11AE1200D4CFCB /* YLNavigationViewController.m in Sources */,
+				C29D96E81C643D160074E5DE /* YLHttpTool.m in Sources */,
 				C25DD0DB1C11AE1200D4CFCB /* YLProfileTableViewController.m in Sources */,
 				C25DD0D11C11AE1200D4CFCB /* AppDelegate.m in Sources */,
 				C268FE261C13CFBE00E39FCE /* YLNewFeatureController.m in Sources */,

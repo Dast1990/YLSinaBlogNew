@@ -25,6 +25,7 @@
 #import "YLTableViewCell.h"
 #define kHomeVCellReuseID @"homeVCell"
 
+#import "YLHttpTool.h"
 
 @interface YLHomeTableViewController ()<YLPullDownViewDelegate>
 
@@ -156,18 +157,15 @@
 #pragma mark -  网络
 /** 获取未读数 */
 - (void)getUnreadMsges{
-    NSLog(@"%s",__func__);
-    /**=============== setp 1: 请求管理者 ===============*/
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    YLLOG(@"1");
     
-    /**=============== setp 2: 配置参数 ===============*/
     YLAccountModel *account = [YLAccountTool account];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"uid"] = account.uid;
-    params[@"access_token"] = account.access_token;
+    //    params[@"access_token"] = account.access_token;//每个get都要设置，于是封装到tool的get方法里了。
+    NSString *urlString = @"https://rm.api.weibo.com/2/remind/unread_count.json";
     
-    /**=============== setp 3:  发送网络请求 ===============*/
-    [mgr GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:params  success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [YLHttpTool GETOrPOST:kGETMethod url:urlString parameters:params success:^(id responseObject) {
         NSString *status = [responseObject[@"status"] description];
         if ([status isEqualToString:@"0"]) {
             self.tabBarItem.badgeValue = nil;
@@ -177,29 +175,30 @@
             //???: app上并没显示
             [UIApplication sharedApplication].applicationIconBadgeNumber = status.intValue;
         }
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
         YLLOG(@"请求失败：%@",error);
     }];
+    return;
 }
 
 - (void)pullUpToLoadMoreBlogs{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     //     since_id	false	int64	若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0。
     //     max_id	false	int64	若指定此参数，则返回ID小于或等于max_id的微博，默认为0。
-    dicM[@"access_token"] = self.accountModel.access_token;
+    
     if (self.Statuses.lastObject) {
         NSString *idTemp     = [self.Statuses.lastObject idstr];
         YLLOG(@"idTemp = %@",idTemp);
         
         //!!!: idTemp = 3938091960576445   idTempSub1 = 3938091960576444，服务器返回的数字一般很大，用longlongValue转，intValue范围太小，会出错。
         NSNumber *idTempSub1 = @(idTemp.longLongValue - 1);//-1，为了不再获得当前最后一条微博。
-        dicM[@"max_id"]      = idTempSub1;
+        params[@"max_id"]      = idTempSub1;
         YLLOG(@"idTempSub1 = %@",idTempSub1);
     }
+    NSString *url = @"https://api.weibo.com/2/statuses/friends_timeline.json";
     
-    [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
-#pragma mark - responseObject,后面跟上  [@"statuses"] ，取到的才是  用户模型数组！
+    [YLHttpTool GETOrPOST:kGETMethod url:url parameters:params success:^(id responseObject) {
+        //!!!: responseObject,后面跟上  [@"statuses"] ，取到的才是  用户模型数组！
         NSMutableArray *newStatuses  = [YLStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         //        NSRange range = NSMakeRange(0, newStatuses.count);
         //        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -207,30 +206,23 @@
         
         [self.tableView reloadData];
         self.loadMoreFooterView.loading = NO;//!!!: 必须在本次数据请求结束后设置为no，否则再次上拉刷新无效。
-        
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"获取微博失败,请检查网络连接"];
         [self.refreshC endRefreshing];
         //        [self showResultWithNumberOfRefreshedBlogs:0];
         self.loadMoreFooterView.loading = NO;//!!!: 必须在本次数据请求结束后设置为no，否则再次上拉刷新无效。
         YLLOG(@"%@", error);
     }];
-    
-    YLLOG(@"hahaha");
 }
 
 - (void)pullControllAction{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
     //     since_id	false	int64	若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0。
     //     max_id	false	int64	若指定此参数，则返回ID小于或等于max_id的微博，默认为0。
-    dicM[@"access_token"] = self.accountModel.access_token;
     if (self.Statuses.firstObject) {
         dicM[@"since_id"]     = [self.Statuses.firstObject idstr];
     }
-    
-    [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
-#pragma mark - responseObject,后面跟上  [@"statuses"] ，取到的才是  用户模型数组！
+    [YLHttpTool GETOrPOST:kGETMethod url:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:dicM success:^(id responseObject) {
         NSMutableArray *newStatuses  = [YLStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -239,14 +231,12 @@
         [self.tableView reloadData];
         [self.refreshC endRefreshing];
         [self showResultWithNumberOfRefreshedBlogs:newStatuses.count];
-        
-        
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"获取微博失败"];
         [self.refreshC endRefreshing];
-        //        [self showResultWithNumberOfRefreshedBlogs:0];
         YLLOG(@"%@", error);
     }];
+    
 }
 
 - (void)showResultWithNumberOfRefreshedBlogs:(NSUInteger)numberOfRefreshedBlogs {
@@ -269,21 +259,17 @@
 }
 
 - (void)getUserName{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
     /*access_token	false	string	采用OAuth授权方式为必填参数，其他授权方式不需要此参数，OAuth授权后获得。
      uid	false	int64	需要查询的用户ID。
      */
     NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
-    dicM[@"access_token"] = self.accountModel.access_token;
     dicM[@"uid"] = self.accountModel.uid;
     
-    [manager GET:@"https://api.weibo.com/2/users/show.json" parameters:dicM success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary *  _Nonnull responseObject) {
+    [YLHttpTool GETOrPOST:kGETMethod url:@"https://api.weibo.com/2/users/show.json" parameters:dicM success:^(id responseObject) {
         self.accountModel.name = responseObject[@"name"];
         //        name 存到沙盒
         [YLAccountTool storeAccount:self.accountModel];
-        
-    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+    } failure:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"获取用户名失败"];
         YLLOG(@"%@", error);
     }];

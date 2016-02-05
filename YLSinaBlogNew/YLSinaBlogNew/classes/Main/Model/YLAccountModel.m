@@ -26,7 +26,7 @@
     
 }
 
-#pragma mark -  编码和解码
+#pragma mark -  编码和解码，解码后要重新赋值！
 - (void)encodeWithCoder:(NSCoder *)encoder{
     [encoder encodeObject: _access_token forKey:@"access_token"];
     [encoder encodeObject: _expires_in forKey:@"expires_in"];

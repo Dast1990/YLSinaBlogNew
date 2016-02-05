@@ -20,4 +20,6 @@
 @property (nonatomic, assign) CGFloat centerX;
 @property (nonatomic, assign) CGFloat centerY;
 
++ (instancetype)viewWithBackgroundColor:(UIColor *)bgColor andAlphla:(CGFloat)alpha;
+
 @end

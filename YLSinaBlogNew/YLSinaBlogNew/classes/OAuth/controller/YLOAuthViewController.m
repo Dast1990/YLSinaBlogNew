@@ -12,6 +12,9 @@
 
 #import "YLAccountModel.h"
 #import "YLAccountTool.h"
+#import <MJExtension.h>
+
+#import "YLHttpTool.h"
 
 
 
@@ -86,31 +89,43 @@
      */
     
     //    是字典，不是数组！
-    NSMutableDictionary *dicM = [NSMutableDictionary dictionary];;
-    dicM[@"client_id"] =kAppKey;
-    dicM[@"client_secret"] = kAppSecret;
-    dicM[@"grant_type"] = @"authorization_code";
-    dicM[@"code"] = code;
-    dicM[@"redirect_uri"] = @"http://www.baidu.com/";
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];;
+    params[@"client_id"] =kAppKey;
+    params[@"client_secret"] = kAppSecret;
+    params[@"grant_type"] = @"authorization_code";
+    params[@"code"] = code;
+    params[@"redirect_uri"] = @"http://www.baidu.com/";
+    NSString *postUrl = @"https://api.weibo.com/oauth2/access_token";
     
-    //  AFN请求token,下面用 AFHTTPRequestOperationManager创建管理器，实现对应POST方法，修改底层接收格式。也行！
-    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager]; 
-    //    sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
-#pragma mark -  最好在代码里写，需要新加提示的格式，如果改afn底层，别人按pod去更新时，别人afn的底层可是没改过的！
-    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", nil];
+    //!!!:  最好在代码里写，需要新加提示的格式，如果改afn底层，别人按pod去更新时，别人afn的底层可是没改过的！ [NSSet setWithObjects:@"text/plain", nil];也可以。
     
-    [sessionManager POST:@"https://api.weibo.com/oauth2/access_token" parameters:dicM success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {//可以改系统的参数名（提高可读性）或参数类型（的确是某个类型时）
+    [YLHttpTool GETOrPOST:kPOSTMethod url:postUrl parameters:params success:^(id responseObject) {
         YLLOG(@"请求成功：%@", responseObject);
+        
+        //!!!: 不能用mj替换下一行，因为自定义转换内部有 授权时间的记录。不止是简单地转换模型。替换的话就没有授权时间了。
+        //        YLAccountModel *accountModel = [YLAccountModel mj_objectWithKeyValues:responseObject];
         YLAccountModel *accountModel = [YLAccountModel accountModleWithDic:responseObject];
         [YLAccountTool storeAccount:accountModel];
         
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
         [window newFeatureJudgeAndSetRootViewController];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        YLLOG(@"请求失败：%@", error);
+    } failure:^(NSError *error) {
+        YLLOG(@"%@", error);
     }];
     
+//    [mgr POST:postUrl parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, NSDictionary*  _Nonnull responseObject) {//可以改系统的参数名（提高可读性）或参数类型（的确是某个类型时）
+//        YLLOG(@"请求成功：%@", responseObject);
+//        
+//        //!!!: 不能用mj替换下一行，因为自定义转换内部有 授权时间的记录。不止是简单地转换模型。替换的话就没有授权时间了。
+//        //        YLAccountModel *accountModel = [YLAccountModel mj_objectWithKeyValues:responseObject];
+//        YLAccountModel *accountModel = [YLAccountModel accountModleWithDic:responseObject];
+//        [YLAccountTool storeAccount:accountModel];
+//        
+//        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//        [window newFeatureJudgeAndSetRootViewController];
+//    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+//        YLLOG(@"%@", error);
+//    }];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{

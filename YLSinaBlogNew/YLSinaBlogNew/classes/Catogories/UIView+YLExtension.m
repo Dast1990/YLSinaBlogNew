@@ -86,4 +86,11 @@
     return self.frame.origin.y;
 }
 
++ (instancetype)viewWithBackgroundColor:(UIColor *)bgColor andAlphla:(CGFloat)alpha {
+    UIView *view = [[self alloc] init];
+    view.backgroundColor = bgColor;
+    view.alpha = alpha;
+    return view;
+}
+
 @end
