@@ -7,9 +7,14 @@
 //
 
 #import "YLStatus.h"
+#import "YLPhoto.h"
+#import <MJExtension.h>
 
 @implementation YLStatus
 
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"pic_urls":[YLPhoto class]};
+}
 
 
 @end

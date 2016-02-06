@@ -34,12 +34,15 @@
 #define YLLOG(...)
 #endif
 
+#define WS(weakself) __weak typeof(self) weakself = self
+
 /** 账号相关 */
 //#define kAppKey @"4152302715"
 //#define kAppSecret @"2b2da33691cbd4f32a578d7263a41247"
 
 #define kAppKey @"2529359875"
 #define kAppSecret @"1e37fe491706dd94b7b6c63ed6e393b2"
+
 
 //#define kAppKey @"3464679971"
 //#define kAppSecret @"7c9f319ac8483760bd72facbdaddfd0a"

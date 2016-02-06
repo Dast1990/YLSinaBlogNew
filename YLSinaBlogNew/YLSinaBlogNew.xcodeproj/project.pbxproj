@@ -10,6 +10,7 @@
 		C20A8A8D1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C20A8A8C1C3FB5F900E1A7C5 /* YLLoadMoreFooterView.m */; };
 		C20A8A8F1C3FB69300E1A7C5 /* YLLoadMoreFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A8A8E1C3FB69300E1A7C5 /* YLLoadMoreFooterView.xib */; };
 		C2168F9B1C1824CF00A11DFC /* YLAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2168F9A1C1824CF00A11DFC /* YLAccountModel.m */; };
+		C228DD111C64866C001F88B1 /* YLPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = C228DD101C64866C001F88B1 /* YLPhoto.m */; };
 		C2396B111C1EE84100BB8E85 /* YLStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = C2396B101C1EE84100BB8E85 /* YLStatus.m */; };
 		C2396B141C1EE85100BB8E85 /* YLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C2396B131C1EE85100BB8E85 /* YLUser.m */; };
 		C25DD0CA1C11AE1200D4CFCB /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C25DD0911C11AE1200D4CFCB /* UIBarButtonItem+Extension.m */; };
@@ -52,6 +53,8 @@
 		C20A8A8E1C3FB69300E1A7C5 /* YLLoadMoreFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YLLoadMoreFooterView.xib; sourceTree = "<group>"; };
 		C2168F991C1824CF00A11DFC /* YLAccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAccountModel.h; sourceTree = "<group>"; };
 		C2168F9A1C1824CF00A11DFC /* YLAccountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAccountModel.m; sourceTree = "<group>"; };
+		C228DD0F1C64866C001F88B1 /* YLPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLPhoto.h; sourceTree = "<group>"; };
+		C228DD101C64866C001F88B1 /* YLPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLPhoto.m; sourceTree = "<group>"; };
 		C2396B0F1C1EE84100BB8E85 /* YLStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLStatus.h; sourceTree = "<group>"; };
 		C2396B101C1EE84100BB8E85 /* YLStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLStatus.m; sourceTree = "<group>"; };
 		C2396B121C1EE85100BB8E85 /* YLUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLUser.h; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 				C2396B101C1EE84100BB8E85 /* YLStatus.m */,
 				C2396B121C1EE85100BB8E85 /* YLUser.h */,
 				C2396B131C1EE85100BB8E85 /* YLUser.m */,
+				C228DD0F1C64866C001F88B1 /* YLPhoto.h */,
+				C228DD101C64866C001F88B1 /* YLPhoto.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -639,6 +644,7 @@
 				C2EC3D671C188E18002CD392 /* YLAccountTool.m in Sources */,
 				C25DD0DE1C11AE2000D4CFCB /* YLMind.c in Sources */,
 				C25DD0DA1C11AE1200D4CFCB /* YLOAuthViewController.m in Sources */,
+				C228DD111C64866C001F88B1 /* YLPhoto.m in Sources */,
 				C2168F9B1C1824CF00A11DFC /* YLAccountModel.m in Sources */,
 				C29509F11C1B3CD700FC831F /* NSObject+Log.m in Sources */,
 				C25DD0CF1C11AE1200D4CFCB /* YLMainTabbarController.m in Sources */,

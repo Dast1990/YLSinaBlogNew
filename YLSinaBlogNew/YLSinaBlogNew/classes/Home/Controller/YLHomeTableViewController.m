@@ -120,12 +120,12 @@
 
 /** 下拉刷新 */
 - (void)pullDownToRefreshBlogs{
-    [self.refreshC addTarget:self action:@selector(pullControllAction) forControlEvents:UIControlEventValueChanged];
+    [self.refreshC addTarget:self action:@selector(loadNewStatuses) forControlEvents:UIControlEventValueChanged];
     
     /** 马上进入刷新状态，但是不会触发 ValueChanged 事件，下面自己调 */
     [self.refreshC beginRefreshing];
     
-    [self pullControllAction];
+    [self loadNewStatuses];
 }
 
 /** 上拉加载更多 */
@@ -215,7 +215,8 @@
     }];
 }
 
-- (void)pullControllAction{
+/** 加载最新微博 */
+- (void)loadNewStatuses{
     NSMutableDictionary *dicM = [NSMutableDictionary dictionary];
     //     since_id	false	int64	若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博），默认为0。
     //     max_id	false	int64	若指定此参数，则返回ID小于或等于max_id的微博，默认为0。
@@ -223,6 +224,7 @@
         dicM[@"since_id"]     = [self.Statuses.firstObject idstr];
     }
     [YLHttpTool GETOrPOST:kGETMethod url:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:dicM success:^(id responseObject) {
+        YLLOG(@"%@",responseObject);
         NSMutableArray *newStatuses  = [YLStatus mj_objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];

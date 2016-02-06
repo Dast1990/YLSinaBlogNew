@@ -93,31 +93,18 @@
                     <constraint firstItem="pOL-Y2-x9H" firstAttribute="top" secondItem="NWa-2P-S55" secondAttribute="bottom" constant="8" id="5GB-y7-uv3"/>
                     <constraint firstAttribute="trailing" secondItem="NWa-2P-S55" secondAttribute="trailing" constant="8" id="5wQ-Q5-jvB"/>
                     <constraint firstAttribute="bottom" secondItem="6X1-aw-kc0" secondAttribute="bottom" constant="3" id="M1d-No-QIe"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="6X1-aw-kc0" secondAttribute="bottom" id="QWv-yr-jFm"/>
-                    <constraint firstItem="6X1-aw-kc0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Wfn-b0-6n2"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="6X1-aw-kc0" secondAttribute="trailing" constant="8" id="Zrf-g5-G6P"/>
                     <constraint firstItem="pOL-Y2-x9H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="aS5-P3-kqj"/>
                     <constraint firstItem="NWa-2P-S55" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="dho-VW-pBf"/>
-                    <constraint firstItem="6X1-aw-kc0" firstAttribute="top" secondItem="pOL-Y2-x9H" secondAttribute="bottom" constant="8" id="nKs-Jj-Svq"/>
                     <constraint firstItem="NWa-2P-S55" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="pAZ-2x-cye"/>
-                    <constraint firstItem="6X1-aw-kc0" firstAttribute="top" secondItem="pOL-Y2-x9H" secondAttribute="bottom" priority="750" constant="8" id="qBm-M1-Ad4"/>
+                    <constraint firstItem="6X1-aw-kc0" firstAttribute="top" secondItem="pOL-Y2-x9H" secondAttribute="bottom" constant="8" id="qBm-M1-Ad4"/>
                     <constraint firstItem="6X1-aw-kc0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="riZ-0U-SAX"/>
                     <constraint firstAttribute="trailing" secondItem="6X1-aw-kc0" secondAttribute="trailing" constant="8" id="yfT-5X-0gt"/>
-                    <constraint firstItem="6X1-aw-kc0" firstAttribute="top" secondItem="pOL-Y2-x9H" secondAttribute="bottom" constant="8" id="z3y-Qd-8ZE"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="QWv-yr-jFm"/>
-                        <exclude reference="Wfn-b0-6n2"/>
-                        <exclude reference="Zrf-g5-G6P"/>
-                        <exclude reference="nKs-Jj-Svq"/>
-                        <exclude reference="z3y-Qd-8ZE"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="bottomView" destination="6X1-aw-kc0" id="UY6-cb-bEQ"/>
                 <outlet property="commentBtn" destination="0zz-Md-GbZ" id="686-S3-tgM"/>
+                <outlet property="constraitOfBtmOfContentLblToTopOfBtmView" destination="qBm-M1-Ad4" id="cEt-oR-TRy"/>
                 <outlet property="contentLbl" destination="pOL-Y2-x9H" id="kTg-hh-t7Q"/>
                 <outlet property="iconView" destination="AfV-c8-reu" id="YR7-c8-aBk"/>
                 <outlet property="nameLbl" destination="nVE-G7-E1T" id="mUh-kH-wn9"/>

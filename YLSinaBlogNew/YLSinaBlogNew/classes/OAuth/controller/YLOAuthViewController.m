@@ -26,6 +26,7 @@
 @implementation YLOAuthViewController
 
 - (void)viewDidLoad{
+    [super viewDidLoad];
     YLLOG(@"%s", __func__);
     UIWebView *webView = [[UIWebView alloc] init];
     
