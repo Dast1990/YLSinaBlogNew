@@ -17,15 +17,25 @@
 #define horizonMargin  8
 #define verticalMargin  8
 #define photoHW 70
+#define kCellMargin 10
 
 
 @interface YLTableViewCell ()
+
+/** 承载头像、名字（不包括配图）的topView */
+@property (weak, nonatomic) IBOutlet UIView *topView;
 
 /** 头像 */
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 
 /** 博主名字 */
 @property (weak, nonatomic) IBOutlet UILabel *nameLbl;
+
+/** 创建时间 */
+@property (weak, nonatomic) IBOutlet UILabel *creatTimeLbl;
+
+/** 微博来源 */
+@property (weak, nonatomic) IBOutlet UILabel *sourceLbl;
 
 /** 微博正文 */
 @property (weak, nonatomic) IBOutlet UILabel *contentLbl;
@@ -55,6 +65,9 @@
 /** 承载图片显示的 容器视图 */
 //!!!: 容器视图为weak，addSubview操作会对子视图产生强引用吗？NO
 @property (nonatomic, weak) UIView *photoView;
+
+/** topView和photoView  下面的  一个白色背景view<# #> */
+@property (nonatomic, weak) UIView *originalBlogBGView;
 
 
 @end
@@ -89,14 +102,23 @@
     
     /** photoView 初始约束 */
     [_photoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(horizonMargin * 0.8);
+        make.left.mas_equalTo(0);
         make.right.mas_equalTo(horizonMargin);
         make.top.mas_equalTo(weakSelf.contentLbl.mas_bottom).offset(verticalMargin);
         
         /** 这样约束，使得初始photoView高度为0，约束bottom不约束height，是为了方便下面 更新约束：photoView应该与最后一个子视图 底部重合。 
          但是行不通，出现显示bug，改为约束高度后正常。*/
         //        make.bottom.mas_equalTo(weakSelf.contentLbl.mas_bottom).offset(verticalMargin);
-        make.height.mas_equalTo(10);
+        
+        //!!!: 由于cell要复用，所以不应该设置初始值，以免在复用时与被复用cell遗留的height约束冲突。只需要在合适位置写  [_photoView mas_updateConstraints:^(MASConstraintMaker *make) {make.top...}];
+        //        make.height.mas_equalTo(0);
+    }];
+    
+    [self.originalBlogBGView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(kCellMargin);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(weakSelf.bottomView.mas_top);
     }];
     
     [self setUpPhotoViewConstraitAndContent];
@@ -118,8 +140,6 @@
     switch (photoNum) {
         case 0:
             self.photoView.hidden = YES;
-            
-            //???:  不能用mas_make。会与满足if里设置的 高度100 产生冲突。但是无论是mas_update和下面方法图片仍会以空白的方式出现！
             self.constraitOfBtmOfContentLblToTopOfBtmView.constant = verticalMargin;
             break;
         case 4:
@@ -143,6 +163,7 @@
     while (self.photoView.subviews.count) {
         [self.photoView.subviews.firstObject removeFromSuperview];
     }
+    
     /** 总行数 */
     short totalRows = (photoNum - 1) / totalCols + 1;
     /** 循环创建 photoNum 个imgView,添加到photoView 根据算出的 行列号，设置约束和内容*/
@@ -159,27 +180,29 @@
             make.size.mas_equalTo(CGSizeMake(photoHW, photoHW));
             make.left.mas_equalTo(horizonMargin + (photoHW + horizonMargin) * (cols - 1));
             make.top.mas_equalTo((photoHW + verticalMargin) * (rows - 1));
-            
         }];
         
         /** 内容 */
         NSString *imgUrlString = [self.status.pic_urls[i - 1] thumbnail_pic];
         [imgViewTemp sd_setImageWithURL:[NSURL URLWithString:imgUrlString] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"] options:SDWebImageLowPriority | SDWebImageRetryFailed];
         
-        /** 更新photoView高度约束 */
+        //!!!: 更新photoView高度约束。因为存在cell的复用，所以不能改为mas_make
         [_photoView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(totalRows * photoHW + (totalRows - 1) * verticalMargin);
             
+            /** 此处如果约束bottom会有显示bug，photo之间的纵向距离为0，应该是约束优先级的 某些原因导致的。还是约束高度吧！ */
+            //            make.bottom.mas_equalTo(imgViewTemp.mas_bottom).offset(verticalMargin);
         }];
-        /** _photoView的背景色可见，它的实际高度并没变，还是10。（有时候变了，好像是第一次画时会改frame，之后复用时，高度还是10）
-         约束的效果:只是体现在画出来什么样子，实际控件的宽高 并不受约束 的影响。
+        /** _photoView的背景色虽然看起来变高了，但它的实际高度并没变，还是10。
+         约束的效果:只是体现在渲染出来什么样子，实际控件的宽高 并不受约束 的影响。
          所以：即使是亲眼看到，也不要轻易相信你的眼睛。通过现象，要去探索本质。不要被外表所迷惑。
          */
-        //                YLLOG(@"photoFrame = %@",NSStringFromCGRect( weakSelf.photoView.frame));
+        //        YLLOG(@"photoFrame = %@",NSStringFromCGRect( self.photoView.frame));
     }
     
     self.constraitOfBtmOfContentLblToTopOfBtmView.constant = verticalMargin + (totalRows) * (photoHW + verticalMargin);
 }
+
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -195,9 +218,10 @@
     YLLOG(@"_status = %@", _status);
     YLUser *user = status.user;
     
-    
     self.nameLbl.text = user.name;
     self.contentLbl.text = status.text;
+    self.creatTimeLbl.text = status.created_at;
+    self.sourceLbl.text = status.source;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageNamed:@"avatar_default"] options:SDWebImageRetryFailed | SDWebImageLowPriority];
     //    
     //    NSString *photoUrl = [status.pic_urls.firstObject thumbnail_pic];
@@ -206,6 +230,12 @@
     //!!!: 由崩溃和yllog顺序 得知，setStatus方法是在updateConstrate之后才被调用的。导致在updateConstrate里取用self.status时，为null，所以要手动调用下面方法（自动调用updateConstrate）来重新设置约束和photoView中内容；
     [self setNeedsUpdateConstraints];
     
+}
+
+- (void)setFrame:(CGRect)frame{
+    /** 不能用self.y += 8,会崩溃。在y的set方法被调用的过程frame.origin.y中，发现frame没有值(这可是setFrame方法)！ */
+    frame.origin.y += 8;
+    [super setFrame:frame];
 }
 
 
@@ -240,6 +270,21 @@
         [self.bottomView addSubview:_leftSeperatorView];
     }
     return _leftSeperatorView;
+}
+
+- (UIView *)originalBlogBGView
+{
+    if (!_originalBlogBGView){
+        /** 为了不受tableview的灰色背景色影响显示，需要在 topView和photoView  下面  放到一个白色背景view,并通过约束实现 */
+        UIView *originalBlogBGView = [[UIView alloc] init];
+        originalBlogBGView.backgroundColor = [UIColor whiteColor];
+        [self.contentView insertSubview:originalBlogBGView belowSubview:self.topView];
+        
+        //!!!: 下面不写也行，为了保险，写吧
+        [self.contentView sendSubviewToBack:originalBlogBGView];
+        _originalBlogBGView = originalBlogBGView;
+    }
+    return _originalBlogBGView;
 }
 
 

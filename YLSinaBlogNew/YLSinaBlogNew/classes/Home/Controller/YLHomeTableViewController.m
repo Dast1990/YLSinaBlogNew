@@ -57,6 +57,9 @@
 /** 加载更多视图 */
 @property (nonatomic, strong) YLLoadMoreFooterView *loadMoreFooterView;
 
+@property (nonatomic, assign) CGPoint markOfContentOffset;
+
+
 @end
 
 @implementation YLHomeTableViewController
@@ -83,7 +86,31 @@
     
     /** 预估行高，在使用fd框架时，也要写，同样会减少行高计算次数！ */
     self.tableView.estimatedRowHeight = 200;
+    
+    /** 为了体现微博整体的层次感，设置tableview的背景色为灰色，同时需要设置cell背景色为clearColor */
+    self.tableView.backgroundColor = YLSameColorRGB(211);
+    
+    /** 创建 点击回到最上面微博的 按钮 */
+    UIButton *toTopStatusBtn = [[UIButton alloc] init];
+    [toTopStatusBtn setTitle:@"top" forState:UIControlStateNormal];
+    [toTopStatusBtn setBackgroundColor:YLSameColorRGBA(150, 1.0)];
+    CGFloat toTopStatusBtnWH = 40;
+    toTopStatusBtn.frame = CGRectMake(YLSCREEN_WIDTH - toTopStatusBtnWH - 8, YLSCREEN_HEIGHT - 49 - toTopStatusBtnWH - 8, toTopStatusBtnWH, toTopStatusBtnWH);
+    [toTopStatusBtn addTarget:self action:@selector(toTopStatusBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIWindow *topWindow = [UIApplication sharedApplication].windows.lastObject;
+    [topWindow addSubview:toTopStatusBtn];
 }
+
+
+#pragma mark -  生命周期
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //    self.tableView.contentInset = UIEdgeInsetsMake(64 + 8, 0, 0, 0);//小瑕疵：刷新控件也会跟着往下挪动一段距离
+    
+    YLLOG(@"%@", NSStringFromCGPoint(self.tableView.contentOffset));
+}
+
 #pragma mark -  初始化控件
 - (void)setUpUI{
     [self setUpItems];
@@ -134,26 +161,6 @@
     self.tableView.tableFooterView = self.loadMoreFooterView;
 }
 
-#pragma mark - 点击titleView按钮，创建下拉视图
-- (void)pullDownViewCreation{
-    //    创建
-    YLPullDownView *menu = [YLPullDownView menu];
-    
-    //    添加显示内容
-    YLMessageTableViewController *contentViewController = [[YLMessageTableViewController alloc] init];
-    contentViewController.view.x = 10;
-    contentViewController.view.y = 10;
-    contentViewController.view.width = 200;
-    contentViewController.view.height = 250;
-    
-    //    只有传递控制器，才会显示内容！只传递contentViewController.view，怎么可能显示内容嘛！
-    menu.contentController = contentViewController;
-    menu.delegate = self;
-    
-    //    显示
-    [menu showFrom:self.navigationItem.titleView];
-}
-
 #pragma mark -  网络
 /** 获取未读数 */
 - (void)getUnreadMsges{
@@ -172,7 +179,7 @@
             [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         } else {
             self.tabBarItem.badgeValue = status;
-            //???: app上并没显示
+            // app上并没显示，因为ios8之后需要在[application didfinishlaunching...]中注册：[application registerUserNotificationSettings:xxx];
             [UIApplication sharedApplication].applicationIconBadgeNumber = status.intValue;
         }
     } failure:^(NSError *error) {
@@ -290,6 +297,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     CGFloat contentOffsetY = scrollView.contentOffset.y;
+    self.markOfContentOffset = CGPointMake(0, contentOffsetY);
     
     //!!!: tabbar会缩小scrollview的高度（高度比618大时),scrollView.frame == {0, 0}, {375, 618},(667- 618 = 49)
     CGFloat differ = scrollView.contentSize.height - scrollView.height;
@@ -384,6 +392,34 @@
 - (void)rightBtnDidClick{
     YLLOG(@"%s", __func__);
 }
+
+#pragma mark - 点击titleView按钮，创建下拉视图
+- (void)pullDownViewCreation{
+    //    创建
+    YLPullDownView *menu = [YLPullDownView menu];
+    
+    //    添加显示内容
+    YLMessageTableViewController *contentViewController = [[YLMessageTableViewController alloc] init];
+    contentViewController.view.x = 10;
+    contentViewController.view.y = 10;
+    contentViewController.view.width = 200;
+    contentViewController.view.height = 250;
+    
+    //    只有传递控制器，才会显示内容！只传递contentViewController.view，怎么可能显示内容嘛！
+    menu.contentController = contentViewController;
+    menu.delegate = self;
+    
+    //    显示
+    [menu showFrom:self.navigationItem.titleView];
+}
+
+- (void)toTopStatusBtnDidClick{
+    self.tableView.contentOffset = self.markOfContentOffset;
+    [UIView animateWithDuration:3 animations:^{
+        self.tableView.contentOffset = CGPointMake(0, -64);
+    }];
+}
+
 
 #pragma mark -  懒加载
 - (YLButton *)titleViewByBtn{

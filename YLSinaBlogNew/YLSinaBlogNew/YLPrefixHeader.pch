@@ -50,8 +50,10 @@
 //定义UIImage对象
 #define YLIMAGE(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
 // 获取RGB颜色
-#define YLRGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
-#define YLRGB(r,g,b) RGBA(r,g,b,1.0f)
+#define YLRGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define YLRGB(r, g, b) YLRGBA(r,g,b,1.0f)
+#define YLSameColorRGB(r) YLRGBA(r, r, r, 1.0f)
+#define YLSameColorRGBA(r, a) YLRGBA(r, r, r, a)
 #define YLRandomColor YLColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 //读取本地图片
 #define YLLOADIMAGE(file,ext) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:ext]]
