@@ -57,8 +57,6 @@
 /** 加载更多视图 */
 @property (nonatomic, strong) YLLoadMoreFooterView *loadMoreFooterView;
 
-@property (nonatomic, assign) CGPoint markOfContentOffset;
-
 
 @end
 
@@ -100,6 +98,7 @@
     
     UIWindow *topWindow = [UIApplication sharedApplication].windows.lastObject;
     [topWindow addSubview:toTopStatusBtn];
+    
 }
 
 
@@ -297,7 +296,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     CGFloat contentOffsetY = scrollView.contentOffset.y;
-    self.markOfContentOffset = CGPointMake(0, contentOffsetY);
     
     //!!!: tabbar会缩小scrollview的高度（高度比618大时),scrollView.frame == {0, 0}, {375, 618},(667- 618 = 49)
     CGFloat differ = scrollView.contentSize.height - scrollView.height;
@@ -414,11 +412,15 @@
 }
 
 - (void)toTopStatusBtnDidClick{
-    self.tableView.contentOffset = self.markOfContentOffset;
-    [UIView animateWithDuration:3 animations:^{
-        self.tableView.contentOffset = CGPointMake(0, -64);
-    }];
+    //    [UIView animateWithDuration:2 animations:^{
+    //        [self.tableView setContentOffset:CGPointMake(0, -64) animated:NO];
+    //    }];
+    
+    NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
+    /** top指的是被指定path的cell在屏幕中显示的位置。 */
+    [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
+
 
 
 #pragma mark -  懒加载

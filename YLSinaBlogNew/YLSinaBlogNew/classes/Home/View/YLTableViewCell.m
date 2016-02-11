@@ -75,10 +75,26 @@
 @implementation YLTableViewCell
 
 - (void)awakeFromNib {
-    /** 向bottomView添加两个分割线view。都抽取到懒加载里了 */
+    /** 设置cell被选中时 cell的显示样式：
+     UITableViewCellSelectionStyleNone,
+     UITableViewCellSelectionStyleBlue,
+     UITableViewCellSelectionStyleGray,
+     UITableViewCellSelectionStyleDefault */
+    //    self.selectionStyle = UITableViewCellSelectionStyleNone; //会阻碍 selectedBackgroundView  的设置生效。
     
-    [self setNeedsUpdateConstraints];
-    //    [self updateConstraintsIfNeeded];
+    UIView *yellowView = [[UIView alloc] init];
+    yellowView.backgroundColor = [UIColor brownColor];
+    
+    UIImage *img = [UIImage imageNamed:@"thinkd"];
+    UIImageView *imgV = [[UIImageView alloc] initWithImage:img];
+    
+    [yellowView addSubview:imgV];
+    [imgV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(self.topView.height + verticalMargin, horizonMargin, self.bottomView.height + verticalMargin, horizonMargin));
+    }];
+    yellowView.contentMode = UIViewContentModeScaleAspectFit;//此处设置没效果
+    /** 设置被选中时显示的背景视图 */
+    self.selectedBackgroundView = yellowView;
 }
 
 //!!!: 凡是自定义的约束，都要写在这里，不能写在awakeFromNib方法中，比如：leftSeperatorView与控件bottomView有约束关系，当bottomView约束被改变时，系统会自动调用下面的update方法来更新所有约束，如果leftSeperatorView的约束写在awakeFromNib中，则不能通过update方法来更新约束代码，导致显示bug
@@ -245,7 +261,7 @@
 {
     if (!_photoView){
         UIView *photoView = [[UIView alloc] init];
-        photoView.backgroundColor = [UIColor cyanColor];
+        //        photoView.backgroundColor = [UIColor cyanColor];
         _photoView = photoView;
         [self.contentView addSubview:_photoView];
     }
